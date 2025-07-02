@@ -1,0 +1,192 @@
+:root {
+    --nav-background-color: #1d456d;
+    --background-color: #dadada;
+
+    --accent-color: #4a94df;
+    --accent-color-500: #357ABD;
+    --accent-color-600: #175fa7;
+
+    --danger-color: rgb(248, 0, 0);
+
+    --pad: 16px;
+    --form-max-width: 500px;
+}
+
+* {
+    margin: 0px;
+    font-family: 'Funnel Sans', sans-serif;
+}
+
+.title-container {
+    margin-right: 10px;
+}
+
+.title {
+    white-space: nowrap;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0px;
+}
+
+body>header {
+    flex-grow: 0;
+    background-color: var(--nav-background-color);
+    color: white;
+    padding: 10px var(--pad);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+body>footer {
+    flex-grow: 0;
+    background-color: var(--nav-background-color);
+    color: white;
+    padding: 10px;
+}
+
+body>main {
+    flex-grow: 1;
+    padding: var(--pad);
+    margin: 0px;
+    background-color: var(--background-color);
+}
+
+nav.nav-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav a.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+    transition: all 0.2s;
+}
+
+nav a.nav-link:hover {
+    color: rgb(192, 184, 238);
+}
+
+nav a.nav-link:active {
+    color: rgb(153, 141, 221);
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Card */
+.card {
+    background-color: white;
+    padding: var(--pad);
+    border-radius: 10px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3)
+}
+
+.card>h2 {
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: var(--form-max-width);
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+    display: block;
+}
+
+input,
+textarea,
+select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: rgb(17, 17, 17);
+    transition: all 0.2s ease;
+
+    font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    outline: none;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+input[type="checkbox"] + label {
+    margin-bottom: 0.2rem;
+    padding-left: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--accent-color-500);
+}
+
+button:active {
+    background-color: var(--accent-color-600);
+}
+
+button.danger {
+    background-color: transparent;
+    color: var(--danger-color);
+    border: 2px solid var(--danger-color);
+}
+
+button.danger:hover {
+    background-color: rgb(255, 207, 204);
+}
+
+button.danger:active {
+    background-color: rgb(255, 173, 167);
+}
