@@ -18,7 +18,13 @@
 }
 
 .title-container {
+    all: unset;
     margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 }
 
 .title {
@@ -56,29 +62,47 @@ body>main {
     padding: var(--pad);
     margin: 0px;
     background-color: var(--background-color);
+    overflow: auto;
 }
 
 nav.nav-bar {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 5px;
     justify-content: space-between;
     width: 100%;
 }
 
-nav a.nav-link {
+nav .nav-link {
     color: white;
     text-decoration: none;
     font-size: larger;
     transition: all 0.2s;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 }
 
-nav a.nav-link:hover {
-    color: rgb(192, 184, 238);
+nav .nav-link.hover-underline::after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    background-color: currentColor;
+
+    left: 0;
+    bottom: 0;
+
+    transition: width 250ms ease-in-out;
 }
 
-nav a.nav-link:active {
-    color: rgb(153, 141, 221);
+nav .nav-link.hover-underline:hover::after {
+    width: 100%;
+}
+
+nav .nav-link:active {
+    color: rgb(190, 190, 190);
 }
 
 .links {
@@ -93,7 +117,7 @@ nav a.nav-link:active {
     background-color: white;
     padding: var(--pad);
     border-radius: 10px;
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3)
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2)
 }
 
 .card>h2 {
@@ -116,12 +140,18 @@ label {
     display: block;
 }
 
+label span.label-aside {
+    color: #5e5e5e;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
 input,
 textarea,
 select {
     box-sizing: border-box;
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem;
     border: 1px solid #d1d1d1;
     border-radius: 8px;
     font-size: 1rem;
@@ -189,4 +219,72 @@ button.danger:hover {
 
 button.danger:active {
     background-color: rgb(255, 173, 167);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: white;
+    min-width: 125px;
+    z-index:  10000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    height: 0px;
+    overflow: hidden;
+
+    transition: height 350ms;
+}
+
+.dropdown:hover {
+    z-index: 20000;
+}
+
+.dropdown-content a.dropdown-item {
+    color: black;
+    background-color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block; 
+    text-wrap: nowrap;
+
+    transition: background-color 200ms;
+}
+
+.dropdown-content a.dropdown-item:hover {
+    background-color: rgb(209, 209, 209);
+}
+
+.dropdown-content a.dropdown-item:active {
+    background-color: rgb(184, 184, 184);
+}
+
+.dropdown-content.sectioned-dropdown h4 {
+    color: black;
+    background-color: white;
+    padding: 10px 16px 2px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-wrap: nowrap;
+}
+
+.dropdown-content.sectioned-dropdown a.dropdown-item {
+    padding: 2px 16px;;
+}
+
+@media (max-width: 900px) {
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+@media (min-width: 901px) {
+    .mobile-only {
+        display: none !important;
+    }
 }
