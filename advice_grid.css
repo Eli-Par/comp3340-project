@@ -1,0 +1,14 @@
+.advice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, calc(25% - 4.5rem / 4)));
+    gap: 1.5rem;
+}
+
+.advice-card {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.advice-card:hover {
+    transform: scale(1.025);
+}

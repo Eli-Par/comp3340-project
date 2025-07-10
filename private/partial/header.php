@@ -3,6 +3,7 @@ session_start();
 
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
+$username = $_SESSION['username'] ?? '';
 
 ?>
 
@@ -18,7 +19,7 @@ $isAdmin = $_SESSION['isAdmin'] ?? 0;
                 <div class="dropdown">
                     <a class="nav-link">Advice</a>
                     <div class="dropdown-content">
-                        <a class="dropdown-item" href="#">All Advice</a>
+                        <a class="dropdown-item" href="all_advice.php">All Advice</a>
                         <a class="dropdown-item" href="#">Recent Advice</a>              
                         <a class="dropdown-item" href="#">Popular Advice</a>
                         <a class="dropdown-item" href="#">Favourite Advice</a>
@@ -64,7 +65,7 @@ $isAdmin = $_SESSION['isAdmin'] ?? 0;
             if($userId != 0) { 
             ?>
                 <div class="dropdown right-container">
-                <a class="nav-link">Welcome User</a>
+                <a class="nav-link">Welcome <?php echo htmlentities($username) ?></a>
                 <div class="dropdown-content right-dropdown">
                     <?php 
                     if($isAdmin) { 

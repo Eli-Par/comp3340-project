@@ -7,3 +7,24 @@ CREATE TABLE users (
 );
 
 COMMIT;
+
+CREATE TABLE advice (
+    adviceId INT AUTO_INCREMENT PRIMARY KEY,
+    authorId INT NOT NULL,
+    title varchar(300) NOT NULL,
+    content TEXT NOT NULL,
+    FOREIGN KEY (authorId) REFERENCES users(userId)
+);
+
+COMMIT;
+
+CREATE TABLE advice_interactions (
+    adviceId INT NOT NULL,
+    userId INT NOT NULL,
+    isLike TINYINT(1) NOT NULL,
+    PRIMARY KEY (adviceId, userId),
+    FOREIGN KEY (adviceId) REFERENCES advice(adviceId),
+    FOREIGN KEY (userId) REFERENCES users(userId)
+);
+
+COMMIT;

@@ -1,0 +1,51 @@
+.advice-card-interaction-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 20px;
+    color: #444444;
+}
+
+.interaction-pill {
+    background-color: rgb(240, 240,240);
+    border-radius: 20px;
+    padding: 6px 16px;
+    margin-top: 5px;
+}
+
+.interaction {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.count {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333333;
+}
+
+.material-symbols-outlined,
+.count {
+    transition: color 0.2s;
+}
+
+.interaction.selected .material-symbols-outlined,
+.interaction.selected .count {
+    color: var(--accent-color);
+}
+
+.interaction:hover .material-symbols-outlined,
+.interaction:hover .count {
+    color: var(--accent-color-500);
+}
+
+.interaction {
+    transition: border-bottom 0.3s;
+}
+
+.interaction.selected {
+    border-bottom: 2px solid var(--accent-color);
+}
