@@ -43,7 +43,7 @@ $query = "SELECT
         SELECT 1 FROM advice_interactions a4
         WHERE a4.adviceId = a.adviceId AND a4.userId = ? AND a4.isLike = 0
     ) AS dislikedByUser
-FROM advice a JOIN users ON a.authorId = users.userId";
+FROM advice a JOIN users ON a.authorId = users.userId WHERE a.dateCreated >= NOW() - INTERVAL 7 DAY";
 $preparedStatement = $conn->prepare($query);
 $preparedStatement->bind_param("ii", $userId, $userId);
 $preparedStatement->execute();
@@ -51,7 +51,7 @@ $result = $preparedStatement->get_result();
 ?>
 
 <main>
-    <h1 style="margin-bottom: 10px;">All Advice</h1>
+    <h1 style="margin-bottom: 10px;">Advice from the Last 7 Days</h1>
     <?php createAdviceGrid($result); ?>
 </main>
 

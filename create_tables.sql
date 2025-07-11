@@ -13,6 +13,7 @@ CREATE TABLE advice (
     authorId INT NOT NULL,
     title varchar(300) NOT NULL,
     content TEXT NOT NULL,
+    dateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (authorId) REFERENCES users(userId)
 );
 

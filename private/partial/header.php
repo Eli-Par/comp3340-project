@@ -10,7 +10,7 @@ $username = $_SESSION['username'] ?? '';
 <body>
     <header>
         <a class="title-container" href="index.php">
-            <img src="" style="width: 30px; height: 30px;">
+            <img src="TravelTipiaLogo.svg" style="width: 30px; height: 30px;">
             <h1 class="title desktop-only">Travel Tipia</h1>
         </a>
         <nav class="nav-bar">
@@ -20,9 +20,9 @@ $username = $_SESSION['username'] ?? '';
                     <a class="nav-link">Advice</a>
                     <div class="dropdown-content">
                         <a class="dropdown-item" href="all_advice.php">All Advice</a>
-                        <a class="dropdown-item" href="#">Recent Advice</a>              
-                        <a class="dropdown-item" href="#">Popular Advice</a>
-                        <a class="dropdown-item" href="#">Favourite Advice</a>
+                        <a class="dropdown-item" href="recent_advice.php">Recent Advice</a>              
+                        <a class="dropdown-item" href="popular_advice.php">Popular Advice</a>
+                        <a class="dropdown-item" href="liked_advice.php">Liked Advice</a>
                     </div>
                 </div>
                 <div class="dropdown">
