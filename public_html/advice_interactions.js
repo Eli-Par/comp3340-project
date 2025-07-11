@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new URLSearchParams();
             formData.append('adviceId', adviceId);
             formData.append('action', action);
-            fetch('private/advice_interaction_api.php', {
+            fetch('../private/advice_interaction_api.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

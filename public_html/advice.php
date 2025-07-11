@@ -4,7 +4,7 @@
 <head>
     <title>Travel Tipia</title>
 
-    <?php include 'private/partial/head.php'; ?>
+    <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_interaction.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
@@ -12,12 +12,12 @@
     <script src="advice_interactions.js"></script>
 </head>
 
-<?php include 'private/partial/header.php'; ?>
+<?php include '../private/partial/header.php'; ?>
 
 <?php
-require_once 'private/advice_card.php';
+require_once '../private/advice_card.php';
 
-require 'private/dbConnection.php';
+require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'];
 $adviceId = $_GET['adviceId'] ?? 0;
@@ -86,4 +86,4 @@ else {
     </section>
 </main>
 
-<?php include 'private/partial/footer.php'; ?>
+<?php include '../private/partial/footer.php'; ?>

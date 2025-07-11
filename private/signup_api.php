@@ -9,32 +9,32 @@ $bio = $_POST['bio'];
 
 //Check if there is any issues with the user input
 if(empty($username)) {
-    header("Location: /comp3340-project/signup.php?error=username");
+    header("Location: /comp3340-project/public_html/signup.php?error=username");
     exit();
 }
 
 if (empty($username)) {
-    header("Location: /comp3340-project/signup.php?error=password");
+    header("Location: /comp3340-project/public_html/signup.php?error=password");
     exit();
 }
 
 if (strlen($username) < 4 || strlen($username) > 50) {
-    header("Location: /comp3340-project/signup.php?error=usernameLength");
+    header("Location: /comp3340-project/public_html/signup.php?error=usernameLength");
     exit();
 }
 
 if (strlen($password) < 8 || strlen($password) > 100) {
-    header("Location: /comp3340-project/signup.php?error=passwordLength");
+    header("Location: /comp3340-project/public_html/signup.php?error=passwordLength");
     exit();
 }
 
 if (strlen($bio) > 500) {
-    header("Location: /comp3340-project/signup.php?error=bio");
+    header("Location: /comp3340-project/public_html/signup.php?error=bio");
     exit();
 }
 
 if ($password != $confirmPassword) {
-    header("Location: /comp3340-project/signup.php?error=passwordMatch");
+    header("Location: /comp3340-project/public_html/signup.php?error=passwordMatch");
     exit();
 }
 
@@ -48,7 +48,7 @@ $result = $preparedStatement->get_result();
 
 // If the username is taken redirect with an error
 if( $result->num_rows > 0) {
-    header("Location: /comp3340-project/signup.php?error=exists");
+    header("Location: /comp3340-project/public_html/signup.php?error=exists");
     exit();
 }
 else {
@@ -60,7 +60,7 @@ else {
     $preparedStatement->bind_param("sss", $username, $hashedPassword, $bio);
     $preparedStatement->execute();
 
-    header('Location: /comp3340-project/login.php');
+    header('Location: /comp3340-project/public_html/login.php');
     exit();
 }
 

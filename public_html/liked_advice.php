@@ -4,7 +4,7 @@
 <head>
     <title>Travel Tipia</title>
 
-    <?php include 'private/partial/head.php'; ?>
+    <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_grid.css" />
     <link rel="stylesheet" href="advice_interaction.css" />
@@ -13,12 +13,12 @@
     <script src="advice_interactions.js"></script>
 </head>
 
-<?php include 'private/partial/header.php'; ?>
+<?php include '../private/partial/header.php'; ?>
 
 <?php
-require_once 'private/advice_grid.php';
+require_once '../private/advice_grid.php';
 
-require 'private/dbConnection.php';
+require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
@@ -43,16 +43,28 @@ $query = "SELECT
         SELECT 1 FROM advice_interactions a4
         WHERE a4.adviceId = a.adviceId AND a4.userId = ? AND a4.isLike = 0
     ) AS dislikedByUser
-FROM advice a JOIN users ON a.authorId = users.userId WHERE a.dateCreated >= NOW() - INTERVAL 7 DAY";
+FROM advice a JOIN users ON a.authorId = users.userId
+WHERE EXISTS (
+        SELECT 1 FROM advice_interactions a3
+        WHERE a3.adviceId = a.adviceId AND a3.userId = ? AND a3.isLike = 1
+    )";
 $preparedStatement = $conn->prepare($query);
-$preparedStatement->bind_param("ii", $userId, $userId);
+$preparedStatement->bind_param("iii", $userId, $userId, $userId);
 $preparedStatement->execute();
 $result = $preparedStatement->get_result();
 ?>
 
 <main>
-    <h1 style="margin-bottom: 10px;">Advice from the Last 7 Days</h1>
-    <?php createAdviceGrid($result); ?>
+<?php if ($userId != 0) { ?>
+    <h1 style="margin-bottom: 10px;">Advice You Liked</h1>
+     createAdviceGrid($result); <?php
+} else { ?>
+    <section class="card">
+        <h2>Advice You Liked</h2>
+        <p style="text-align: center; margin-top: 10px;">You need to be logged in to see your liked advice<br/><a href="login.php">Login here!</a></p>
+        
+    </section>
+<?php } ?>
 </main>
 
-<?php include 'private/partial/footer.php'; ?>
+<?php include '../private/partial/footer.php'; ?>

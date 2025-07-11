@@ -8,10 +8,10 @@
 <head>
     <title>Travel Tipia</title>
 
-    <?php include 'private/partial/head.php'; ?>
+    <?php include '../private/partial/head.php'; ?>
 </head>
 
-<?php include 'private/partial/header.php'; ?>
+<?php include '../private/partial/header.php'; ?>
 
 <main>
     <section class="card" style="max-width: 600px; margin: 0 auto;">
@@ -53,4 +53,4 @@
     </section>
 </main>
 
-<?php include 'private/partial/footer.php'; ?>
+<?php include '../private/partial/footer.php'; ?>

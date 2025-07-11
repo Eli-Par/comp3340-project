@@ -8,17 +8,17 @@
 <head>
     <title>Travel Tipia</title>
 
-    <?php include 'private/partial/head.php'; ?>
+    <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="login.css" />
 </head>
 
-<?php include 'private/partial/header.php'; ?>
+<?php include '../private/partial/header.php'; ?>
 
 <main>
     <section class="card" style="max-width: 600px; margin: 0 auto;">
         <h2>Sign Up</h2>
-        <form action="private/signup_api.php" method="post">
+        <form action="../private/signup_api.php" method="post">
             <?php if (isset($_GET['error']) && $_GET['error'] == 'exists') {?>
                 <div class="error">Username already exists</div>
             <?php }?>
@@ -85,4 +85,4 @@
     });
 </script>
 
-<?php include 'private/partial/footer.php'; ?>
+<?php include '../private/partial/footer.php'; ?>

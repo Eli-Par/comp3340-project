@@ -4,7 +4,7 @@
 <head>
     <title>Travel Tipia</title>
 
-    <?php include 'private/partial/head.php'; ?>
+    <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_grid.css" />
     <link rel="stylesheet" href="advice_interaction.css" />
@@ -13,12 +13,12 @@
     <script src="advice_interactions.js"></script>
 </head>
 
-<?php include 'private/partial/header.php'; ?>
+<?php include '../private/partial/header.php'; ?>
 
 <?php
-require_once 'private/advice_grid.php';
+require_once '../private/advice_grid.php';
 
-require 'private/dbConnection.php';
+require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
@@ -55,4 +55,4 @@ $result = $preparedStatement->get_result();
     <?php createAdviceGrid($result); ?>
 </main>
 
-<?php include 'private/partial/footer.php'; ?>
+<?php include '../private/partial/footer.php'; ?>
