@@ -23,6 +23,7 @@ $username = $_SESSION['username'] ?? '';
                         <a class="dropdown-item" href="recent_advice.php">Recent Advice</a>              
                         <a class="dropdown-item" href="popular_advice.php">Popular Advice</a>
                         <a class="dropdown-item" href="liked_advice.php">Liked Advice</a>
+                        <a class="dropdown-item" href="unread_advice.php">Unread Advice</a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -74,7 +75,7 @@ $username = $_SESSION['username'] ?? '';
                     <?php
                     }
                     ?>
-                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="my_profile.php">My Profile</a>
                     <a class="dropdown-item" href="#">Account</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>

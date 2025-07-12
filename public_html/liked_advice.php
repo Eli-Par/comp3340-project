@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="advice_grid.css" />
     <link rel="stylesheet" href="advice_interaction.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    
 
     <script src="advice_interactions.js"></script>
 </head>

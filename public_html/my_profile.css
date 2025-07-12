@@ -1,0 +1,13 @@
+.settings {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    color: black;
+    
+    transition: transform 0.2s;
+}
+
+.settings:hover {
+    transform: scale(1.1);
+}

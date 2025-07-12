@@ -1,10 +1,12 @@
 CREATE TABLE users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
-    username varchar(50) NOT NULL UNIQUE,
-    password varchar(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
     isAdmin TINYINT(1) NOT NULL DEFAULT 0,
-    bio varchar(500) NOT NULL DEFAULT ""
+    bio VARCHAR(500) NOT NULL DEFAULT "",
+    joinDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
 
 COMMIT;
 
@@ -27,5 +29,17 @@ CREATE TABLE advice_interactions (
     FOREIGN KEY (adviceId) REFERENCES advice(adviceId),
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
+
+COMMIT;
+
+CREATE TABLE advice_history (
+    adviceHistoryId INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT,
+    adviceId INT,
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (adviceId) REFERENCES advice(adviceId)
+);
+
 
 COMMIT;

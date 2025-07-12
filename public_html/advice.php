@@ -7,7 +7,7 @@
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_interaction.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    
 
     <script src="advice_interactions.js"></script>
 </head>
@@ -19,7 +19,7 @@ require_once '../private/advice_card.php';
 
 require '../private/dbConnection.php';
 
-$userId = $_SESSION['userId'];
+$userId = $_SESSION['userId'] ?? 0;
 $adviceId = $_GET['adviceId'] ?? 0;
 
 //Get the advices details
@@ -28,6 +28,7 @@ $query = "SELECT
     title, 
     content, 
     username,
+    bio,
     -- Like and dislike count queries
     (SELECT COUNT(*) FROM advice_interactions a1 WHERE a1.adviceId = a.adviceId AND a1.isLike = 1) AS likeCount,
     (SELECT COUNT(*) FROM advice_interactions a2 WHERE a2.adviceId = a.adviceId AND a2.isLike = 0) AS dislikeCount,
@@ -60,6 +61,14 @@ if ($result->num_rows > 0) {
     $dislikes = $advice["dislikeCount"];
     $isLiked = $advice["likedByUser"];
     $isDisliked = $advice["dislikedByUser"];
+    $bio = $advice["bio"];
+
+    if ($userId) {
+        $sql = "INSERT INTO advice_history (userId, adviceId) VALUES (?, ?)";
+        $statement = $conn->prepare($sql);
+        $statement->bind_param("ii", $userId, $adviceId);
+        $statement->execute();
+    }
 }
 else {
     $title = "Advice not found";
@@ -69,7 +78,9 @@ else {
     $dislikes = 0;
     $isLiked = 0;
     $isDisliked = 0;
+    $bio = "";
 }
+
 ?>
 
 <main>
@@ -82,6 +93,12 @@ else {
 
         <p style="text-align: center; margin-top: 10px;">
             <?php echo nl2br(htmlspecialchars($content)) ?>
+        </p>
+    </section>
+    <section class="card" style="max-width: calc(min(600px, 90vw)); margin: 20px auto;">
+        <h2>About <?php echo htmlentities($username) ?></h2>
+        <p style="text-align: center; margin-top: 10px;">
+            <?php echo nl2br(htmlspecialchars($bio)) ?>
         </p>
     </section>
 </main>

@@ -11,6 +11,8 @@
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="login.css" />
+
+    <script src="bio_char_count.js"></script>
 </head>
 
 <?php include '../private/partial/header.php'; ?>
@@ -69,20 +71,4 @@
 
     </section>
 </main>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const bio = document.getElementById('bio');
-        bio.addEventListener('input', () => {
-            const text = bio.value;
-
-            const length = text.length;
-
-            const bioMaxLabel = document.getElementById('bio-max');
-
-            bioMaxLabel.textContent = `(${length} / 500 characters)`;
-        })
-    });
-</script>
-
 <?php include '../private/partial/footer.php'; ?>
