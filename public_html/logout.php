@@ -17,5 +17,5 @@ if (ini_get("session.use_cookies")) {
 
 session_destroy();
 
-header("Location: /comp3340-project/public_html/index.php");
+header("Location: /comp3340-project/public_html/logout_confirmation.html");
 exit();

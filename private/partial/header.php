@@ -34,9 +34,9 @@ $username = $_SESSION['username'] ?? '';
                         <a class="dropdown-item" href="#">Add Discussion</a>
                     </div>
                 </div>
-                <a class="nav-link hover-underline" href="gallary.php">Gallary</a>
-                <a class="nav-link hover-underline" href="about.php">About</a>
-                <a class="nav-link hover-underline" href="contact.php">Contact</a>
+                <a class="nav-link hover-underline" href="gallary.html">Gallary</a>
+                <a class="nav-link hover-underline" href="about.html">About</a>
+                <a class="nav-link hover-underline" href="contact.html">Contact</a>
             </div>
 
             <div class="links mobile-only">
