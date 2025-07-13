@@ -1,4 +1,4 @@
-.advice-card-interaction-container {
+.advice-card-interaction-container, .discussion-card-interaction-container {
     display: flex;
     gap: 20px;
     align-items: center;

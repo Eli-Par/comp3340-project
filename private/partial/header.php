@@ -29,12 +29,12 @@ $username = $_SESSION['username'] ?? '';
                 <div class="dropdown">
                     <a class="nav-link">Discussion</a>
                     <div class="dropdown-content">
-                        <a class="dropdown-item" href="#">All Discussions</a>
+                        <a class="dropdown-item" href="all_discussions.php">All Discussions</a>
                         <a class="dropdown-item" href="#">My Discussions</a>
                         <a class="dropdown-item" href="#">Add Discussion</a>
                     </div>
                 </div>
-                <a class="nav-link hover-underline" href="gallary.html">Gallary</a>
+                <a class="nav-link hover-underline" href="gallary.html">Gallery</a>
                 <a class="nav-link hover-underline" href="about.html">About</a>
                 <a class="nav-link hover-underline" href="contact.html">Contact</a>
             </div>

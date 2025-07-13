@@ -14,9 +14,9 @@ function createAdviceGrid($adviceResult)
     while ($row = $adviceResult->fetch_assoc()) {
         
         $adviceId = $row['adviceId'];
-        $title = htmlspecialchars($row['title']);
+        $title = $row['title'];
         $content = $row['content'];
-        $username = htmlspecialchars($row['username']);
+        $username = $row['username'];
         
         $likes = $row['likeCount'];
         $dislikes = $row['dislikeCount'];

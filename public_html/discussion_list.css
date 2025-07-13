@@ -1,0 +1,27 @@
+.discussion-card {
+    margin: 16px 0px;
+
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.discussion-card:hover {
+    transform: scale(1.01);
+}
+
+.discussion-card-top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.discussion-card-title {
+    margin-right: 10px;
+}
+
+.discussion-card-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

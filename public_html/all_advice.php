@@ -7,7 +7,7 @@
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_grid.css" />
-    <link rel="stylesheet" href="advice_interaction.css" />
+    <link rel="stylesheet" href="interactions.css" />
     
 
     <script src="advice_interactions.js"></script>

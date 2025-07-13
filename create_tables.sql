@@ -53,3 +53,25 @@ CREATE TABLE contact_messages (
 );
 
 COMMIT;
+
+CREATE TABLE discussion (
+    discussionId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    authorId INT NOT NULL,
+    title VARCHAR(300) NOT NULL,
+    content TEXT NOT NULL,
+    dateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    dateModified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (authorId) REFERENCES users(userId)
+);
+
+COMMIT;
+
+CREATE TABLE discussion_interactions (
+    discussionId INT NOT NULL,
+    userId INT NOT NULL,
+    PRIMARY KEY (discussionId, userId),
+    FOREIGN KEY (discussionId) REFERENCES discussion(discussionId),
+    FOREIGN KEY (userId) REFERENCES users(userId)
+);
+
+COMMIT;
