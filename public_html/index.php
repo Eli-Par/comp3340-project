@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Travel Tipia</title>
-
-    <?php include '../private/partial/head.php'; ?>
-
-    <link rel="stylesheet" href="advice_grid.css" />
-    <link rel="stylesheet" href="discussion_list.css" />
-    <link rel="stylesheet" href="interactions.css" />
-    <link rel="stylesheet" href="index.css" />
-
-    <script src="advice_interactions.js"></script>
-    <script src="discussion_interactions.js"></script>
-</head>
-
-<?php include '../private/partial/header.php'; ?>
-
 <?php
+session_start();
+
 require_once '../private/advice_grid.php';
 require_once '../private/discussion_list.php';
 
@@ -54,6 +37,25 @@ $stmtDiscussion->bind_param("i", $userId);
 $stmtDiscussion->execute();
 $resultDiscussion = $stmtDiscussion->get_result();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Tipia</title>
+
+    <?php include '../private/partial/head.php'; ?>
+
+    <link rel="stylesheet" href="advice_grid.css" />
+    <link rel="stylesheet" href="discussion_list.css" />
+    <link rel="stylesheet" href="interactions.css" />
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="advice_interactions.js"></script>
+    <script src="discussion_interactions.js"></script>
+</head>
+
+<?php include '../private/partial/header.php'; ?>
 
 <main>
     <section class="left-column">

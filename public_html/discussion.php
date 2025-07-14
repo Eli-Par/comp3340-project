@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Travel Tipia</title>
-
-    <?php include '../private/partial/head.php'; ?>
-
-    <link rel="stylesheet" href="interactions.css" />
-    <link rel="stylesheet" href="discussion.css" />
-
-    <script src="discussion_interactions.js"></script>
-</head>
-
-<?php include '../private/partial/header.php'; ?>
-
 <?php
+session_start();
+
 require_once '../private/discussion_card.php';
 
 require '../private/dbConnection.php';
@@ -70,8 +56,7 @@ if ($result->num_rows > 0) {
 
     $hearts = $discussion["heartCount"];
     $isHearted = $discussion["heartedByUser"];
-}
-else {
+} else {
     $title = "Discussion not found";
     $content = "";
     $username = "Unknown";
@@ -81,6 +66,22 @@ else {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Tipia</title>
+
+    <?php include '../private/partial/head.php'; ?>
+
+    <link rel="stylesheet" href="interactions.css" />
+    <link rel="stylesheet" href="discussion.css" />
+
+    <script src="discussion_interactions.js"></script>
+</head>
+
+<?php include '../private/partial/header.php'; ?>
 
 <main>
     <section class="card" style="max-width: 90vw; margin: 0 auto;">

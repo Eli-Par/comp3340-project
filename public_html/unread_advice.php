@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Travel Tipia</title>
-
-    <?php include '../private/partial/head.php'; ?>
-
-    <link rel="stylesheet" href="advice_grid.css" />
-    <link rel="stylesheet" href="interactions.css" />
-    
-
-    <script src="advice_interactions.js"></script>
-</head>
-
-<?php include '../private/partial/header.php'; ?>
-
 <?php
 require_once '../private/advice_grid.php';
 
@@ -53,6 +36,23 @@ $preparedStatement->bind_param("iii", $userId, $userId, $userId);
 $preparedStatement->execute();
 $result = $preparedStatement->get_result();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Tipia</title>
+
+    <?php include '../private/partial/head.php'; ?>
+
+    <link rel="stylesheet" href="advice_grid.css" />
+    <link rel="stylesheet" href="interactions.css" />
+    
+
+    <script src="advice_interactions.js"></script>
+</head>
+
+<?php include '../private/partial/header.php'; ?>
 
 <main>
 <?php if ($userId != 0 && $result->num_rows > 0) { ?>

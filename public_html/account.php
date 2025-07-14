@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Travel Tipia</title>
-
-    <?php include '../private/partial/head.php'; ?>
-
-    <link rel="stylesheet" href="my_profile.css" />
-
-    <script src="bio_char_count.js"></script>
-</head>
-
-<?php include '../private/partial/header.php'; ?>
-
 <?php
+session_start();
+
 $userId = $_SESSION['userId'] ?? 0;
 if ($userId == 0) {
-    header("Location: comp3340/public_html/index.php");
+    header("Location: /comp3340/public_html/index.php");
     exit();
 }
 
@@ -32,6 +19,21 @@ $username = $user["username"];
 $joinDate = new DateTime($user['joinDate']);
 $bio = $user['bio'];
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Tipia</title>
+
+    <?php include '../private/partial/head.php'; ?>
+
+    <link rel="stylesheet" href="my_profile.css" />
+
+    <script src="bio_char_count.js"></script>
+</head>
+
+<?php include '../private/partial/header.php'; ?>
 
 <main>
     <section class="card" style="max-width: 500px; margin: 0 auto; position: relative">

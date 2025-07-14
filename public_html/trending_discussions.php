@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+require_once '../private/discussion_list.php';
+
+require '../private/dbConnection.php';
+require '../private/trending_discussion_query.php';
+
+$userId = $_SESSION['userId'] ?? 0;
+
+$query = trending_discussion_query();
+$preparedStatement = $conn->prepare($query);
+$preparedStatement->bind_param("i", $userId);
+$preparedStatement->execute();
+$result = $preparedStatement->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,21 +31,6 @@
 </head>
 
 <?php include '../private/partial/header.php'; ?>
-
-<?php
-require_once '../private/discussion_list.php';
-
-require '../private/dbConnection.php';
-require '../private/trending_discussion_query.php';
-
-$userId = $_SESSION['userId'] ?? 0;
-
-$query = trending_discussion_query();
-$preparedStatement = $conn->prepare($query);
-$preparedStatement->bind_param("i", $userId);
-$preparedStatement->execute();
-$result = $preparedStatement->get_result();
-?>
 
 <main>
     <div style="display: flex; justify-content: space-between; align-items: center;">

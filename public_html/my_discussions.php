@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Travel Tipia</title>
-
-    <?php include '../private/partial/head.php'; ?>
-
-    <link rel="stylesheet" href="discussion_list.css" />
-    <link rel="stylesheet" href="interactions.css" />
-    
-
-    <script src="discussion_interactions.js"></script>
-</head>
-
-<?php include '../private/partial/header.php'; ?>
-
 <?php
+session_start();
+
 require_once '../private/discussion_list.php';
 
 require '../private/dbConnection.php';
@@ -44,6 +29,23 @@ $preparedStatement->bind_param("ii", $userId, $userId);
 $preparedStatement->execute();
 $result = $preparedStatement->get_result();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Tipia</title>
+
+    <?php include '../private/partial/head.php'; ?>
+
+    <link rel="stylesheet" href="discussion_list.css" />
+    <link rel="stylesheet" href="interactions.css" />
+    
+
+    <script src="discussion_interactions.js"></script>
+</head>
+
+<?php include '../private/partial/header.php'; ?>
 
 <main>
 <?php if ($userId != 0) { ?>

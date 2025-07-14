@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 $username = $_SESSION['username'] ?? '';

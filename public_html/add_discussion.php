@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+$userId = $_SESSION['userId'] ?? 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,18 +17,12 @@
 
 <?php include '../private/partial/header.php'; ?>
 
-<?php
-$userId = $_SESSION['userId'] ?? 0;
-if ($userId == 0) {
-    header("Location: comp3340/public_html/index.php");
-    exit();
-}
-
-?>
-
 <main>
     <section class="card" style="margin: 0 auto; position: relative">
         <h2>Add Discussion</h2>
+        <?php
+        if ($userId != 0) {
+            ?>
         <form method="post" action="../private/add_discussion_api.php">
             <div>
                 <label for="title">Title</label>
@@ -35,6 +35,10 @@ if ($userId == 0) {
 
             <button type="submit" style="max-width: 500px; margin: 0 auto;">Add Discussion</button>
         </form>
+        <?php } else { ?>
+            <p style='text-align: center;'>You need to be logged in to post a discussion.</p>
+            <button style="margin-top: 16px;" onclick="window.location.href='login.php'">Login Here</button>
+        <?php } ?>
     </section>
 </main>
 

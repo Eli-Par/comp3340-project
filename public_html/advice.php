@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Travel Tipia</title>
-
-    <?php include '../private/partial/head.php'; ?>
-
-    <link rel="stylesheet" href="interactions.css" />
-    
-
-    <script src="advice_interactions.js"></script>
-</head>
-
-<?php include '../private/partial/header.php'; ?>
-
 <?php
+session_start();
+
 require_once '../private/advice_card.php';
 
 require '../private/dbConnection.php';
@@ -69,8 +55,7 @@ if ($result->num_rows > 0) {
         $statement->bind_param("ii", $userId, $adviceId);
         $statement->execute();
     }
-}
-else {
+} else {
     $title = "Advice not found";
     $content = "";
     $username = "Unknown";
@@ -82,6 +67,22 @@ else {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Tipia</title>
+
+    <?php include '../private/partial/head.php'; ?>
+
+    <link rel="stylesheet" href="interactions.css" />
+    
+
+    <script src="advice_interactions.js"></script>
+</head>
+
+<?php include '../private/partial/header.php'; ?>
 
 <main>
     <section class="card" style="max-width: 90vw; margin: 0 auto;">
