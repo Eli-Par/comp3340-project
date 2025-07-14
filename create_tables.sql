@@ -69,9 +69,22 @@ COMMIT;
 CREATE TABLE discussion_interactions (
     discussionId INT NOT NULL,
     userId INT NOT NULL,
+    date_interacted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (discussionId, userId),
     FOREIGN KEY (discussionId) REFERENCES discussion(discussionId),
     FOREIGN KEY (userId) REFERENCES users(userId)
+);
+
+COMMIT;
+
+CREATE TABLE discussion_comments (
+    commentID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    discussionId INT NOT NULL,
+    authorId INT NOT NULL,
+    content TEXT NOT NULL,
+    dateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (discussionId) REFERENCES discussion(discussionId),
+    FOREIGN KEY (authorId) REFERENCES users(userId)
 );
 
 COMMIT;

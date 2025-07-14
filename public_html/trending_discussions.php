@@ -19,26 +19,11 @@
 require_once '../private/discussion_list.php';
 
 require '../private/dbConnection.php';
+require '../private/trending_discussion_query.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
-$query = "SELECT 
-    discussionId, 
-    title, 
-    content, 
-    username,
-    dateCreated,
-
-     -- Like and dislike count queries
-    (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,
-    
-    -- Booleans for current user
-    EXISTS (
-        SELECT 1 FROM discussion_interactions a4
-        WHERE a4.discussionId = a.discussionId AND a4.userId = ?
-    ) AS heartedByUser
-
-FROM discussion a JOIN users ON a.authorId = users.userId ORDER BY dateCreated DESC";
+$query = trending_discussion_query();
 $preparedStatement = $conn->prepare($query);
 $preparedStatement->bind_param("i", $userId);
 $preparedStatement->execute();
@@ -47,7 +32,7 @@ $result = $preparedStatement->get_result();
 
 <main>
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 style="margin-bottom: 10px;">All Discussions</h1>
+        <h1 style="margin-bottom: 10px;">Trending Discussions</h1>
         <button style="width: 16rem;" onclick="window.location.href='add_discussion.php'">Add Discussion</button>
     </div>
     <?php createDiscussionList($result) ?>

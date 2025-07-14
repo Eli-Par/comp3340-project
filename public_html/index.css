@@ -1,0 +1,22 @@
+main {
+    display: flex;
+    gap: 2rem;
+}
+
+.left-column {
+    flex: 2.5;
+}
+
+.left-column h2 {
+    margin-bottom: 10px;
+}
+
+.right-column {
+    flex: 1;
+    background-color: rgb(236, 236, 236);
+
+}
+
+.right-column h2 {
+    margin-top: 0;
+}

@@ -1,0 +1,51 @@
+.comment-section-card {
+    width: 50vw;
+    max-width: 90vw;
+    min-width: 600px;
+    margin: 16px auto;
+}
+
+@media (max-width: 599px) {
+    .comment-section-card {
+        width: 80vw;
+        max-width: 90vw;
+        min-width: auto;
+    }
+}
+
+.comment-form {
+    --form-max-width: 100%;
+    margin-top: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.comment-form-label {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+button[type="submit"] {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.comment {
+    margin: 5px 0px;
+}
+
+.new-comment {
+    animation: new-comment 1s ease-in-out;
+}
+
+@keyframes new-comment {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: var(--accent-color-100);
+    }
+    100% {
+        background-color: white;
+    }
+}

@@ -30,8 +30,10 @@ $username = $_SESSION['username'] ?? '';
                     <a class="nav-link">Discussion</a>
                     <div class="dropdown-content">
                         <a class="dropdown-item" href="all_discussions.php">All Discussions</a>
-                        <a class="dropdown-item" href="#">My Discussions</a>
-                        <a class="dropdown-item" href="#">Add Discussion</a>
+                        <a class="dropdown-item" href="trending_discussions.php">Trending Discussions</a>
+                        <a class="dropdown-item" href="my_discussions.php">My Discussions</a>
+                        <a class="dropdown-item" href="favorite_discussions.php">Favorite Discussions</a>
+                        <a class="dropdown-item" href="add_discussion.php">Add Discussion</a>
                     </div>
                 </div>
                 <a class="nav-link hover-underline" href="gallary.html">Gallery</a>
@@ -76,7 +78,7 @@ $username = $_SESSION['username'] ?? '';
                     }
                     ?>
                     <a class="dropdown-item" href="my_profile.php">My Profile</a>
-                    <a class="dropdown-item" href="#">Account</a>
+                    <a class="dropdown-item" href="account.php">Account</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
             </div>
