@@ -31,7 +31,7 @@ $stmtAdvice->execute();
 $resultAdvice = $stmtAdvice->get_result();
 
 // Get trending discussions
-$discussionQuery = trending_discussion_query(5);
+$discussionQuery = trending_discussion_query(4);
 $stmtDiscussion = $conn->prepare($discussionQuery);
 $stmtDiscussion->bind_param("i", $userId);
 $stmtDiscussion->execute();

@@ -1,7 +1,7 @@
 <?php
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
-$username = $_SESSION['username'] ?? '';
+$name = $_SESSION['username'] ?? '';
 
 ?>
 
@@ -66,12 +66,12 @@ $username = $_SESSION['username'] ?? '';
             if($userId != 0) { 
             ?>
                 <div class="dropdown right-container">
-                <a class="nav-link">Welcome <?php echo htmlentities($username) ?></a>
+                <a class="nav-link">Welcome <?php echo htmlentities($name) ?></a>
                 <div class="dropdown-content right-dropdown">
                     <?php 
                     if($isAdmin) { 
                     ?>
-                        <a class="dropdown-item" href="#">Admin Panel</a>
+                        <a class="dropdown-item" href="admin.php">Admin Panel</a>
                     <?php
                     }
                     ?>

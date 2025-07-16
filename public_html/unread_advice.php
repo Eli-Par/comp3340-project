@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once '../private/advice_grid.php';
 
 require '../private/dbConnection.php';
