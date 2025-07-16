@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'dbConnection.php';
+require_once 'dbConnection.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];

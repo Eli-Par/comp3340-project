@@ -13,8 +13,11 @@ COMMIT;
 CREATE TABLE advice (
     adviceId INT AUTO_INCREMENT PRIMARY KEY,
     authorId INT NOT NULL,
-    title varchar(300) NOT NULL,
+    title VARCHAR(300) NOT NULL,
+    summary TEXT,
     content TEXT NOT NULL,
+    imageLink VARCHAR(500),
+    imageAlt VARCHAR(255) DEFAULT '',
     dateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (authorId) REFERENCES users(userId)
 );
@@ -85,6 +88,13 @@ CREATE TABLE discussion_comments (
     dateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (discussionId) REFERENCES discussion(discussionId),
     FOREIGN KEY (authorId) REFERENCES users(userId)
+);
+
+COMMIT;
+
+CREATE TABLE themes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    theme VARCHAR(100) NOT NULL UNIQUE
 );
 
 COMMIT;

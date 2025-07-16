@@ -10,7 +10,7 @@ if (!$isAdmin || $userId == 0) {
     exit();
 }
 
-require 'dbConnection.php';
+require_once 'dbConnection.php';
 
 header('Content-Type: application/json');
 

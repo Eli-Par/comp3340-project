@@ -1,0 +1,12 @@
+:root {
+    --nav-background-color: #ce6722;
+    --background-color: #f7cb80;
+
+    --accent-color-100: #ffb84d;
+    --accent-color-200: #ff8c00;
+    --accent-color: #ff6600;
+    --accent-color-500: #cc5200;
+    --accent-color-600: #993d00;
+
+    --danger-color: #e60000;
+}

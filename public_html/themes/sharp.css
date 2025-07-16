@@ -1,0 +1,9 @@
+/* Override border-radius on key elements */
+.card,
+input,
+textarea,
+select,
+button {
+    border-radius: 0;
+    box-shadow: none;
+}
