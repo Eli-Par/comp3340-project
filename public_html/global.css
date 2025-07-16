@@ -9,6 +9,7 @@
     --accent-color-600: #175fa7;
 
     --danger-color: rgb(248, 0, 0);
+    --input-glow-color: rgba(74, 144, 226, 0.2);
 
     --pad: 16px;
     --form-max-width: 500px;
@@ -168,7 +169,7 @@ input:focus,
 textarea:focus,
 select:focus {
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    box-shadow: 0 0 0 3px var(--input-glow-color);
     outline: none;
 }
 
