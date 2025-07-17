@@ -62,6 +62,14 @@ if ($result && $row = $result->fetch_assoc()) {
 
     <section class="card" style="margin-top: 16px;">
         <h2>Discussion Posts by Day Created</h2>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+            <button onclick="window.location.href='admin_users.php'" style="width: fit-content; display: inline-block;">Manage Users</button>
+            <button onclick="window.location.href='#'" style="width: fit-content; display: inline-block;">Add Advice</button>
+        </div>
+    </section>
+
+    <section class="card" style="margin-top: 16px;">
+        <h2>Discussion Posts by Day Created</h2>
         <div id="chart"></div>
     </section>
 </main>

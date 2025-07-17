@@ -24,6 +24,11 @@ if( $result->num_rows > 0) {
         exit();
     }
 
+    if ($user["isActive"] == 0) {
+        header('Location: /comp3340-project/public_html/login.php?error=disabled');
+        exit();
+    }
+
     //Setup the session if valid
     $_SESSION["userId"] = $user["userId"];
     $_SESSION["username"] = $user["username"];
