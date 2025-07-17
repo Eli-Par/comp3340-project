@@ -26,7 +26,7 @@ $content = $_POST['content'];
 $summary = $_POST['summary'];
 $imageLink = $_POST['imageLink'];
 
-$preparedStatement = $conn->prepare('INSERT INTO advice (authorId, title, imageLink, content, summary) VALUES (?, ?, ?, ?, ?)');
+$preparedStatement = $conn->prepare('INSERT INTO advice (authorId, title, imageLink, summary, content) VALUES (?, ?, ?, ?, ?)');
 $preparedStatement->bind_param('issss', $userId, $title, $imageLink, $summary, $content);
 $preparedStatement->execute();
 
