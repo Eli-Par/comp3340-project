@@ -3,6 +3,24 @@ $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 $name = $_SESSION['username'] ?? '';
 
+// Get current page
+$currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+// Help mapping
+$pageLinks = [
+    'admin.php' => 'https://example.com/admin/dashboard',
+    'index.php' => 'https://example.com/home',
+    'login.php' => 'https://example.com/auth',
+    'profile.php' => 'https://example.com/user/profile',
+];
+
+// Store the current pages help link
+if (isset($pageLinks[$currentPage])) {
+    $mappedLink = $pageLinks[$currentPage];
+} else {
+    $mappedLink = $pageLinks['index.php'];
+}
+
 ?>
 
 <body>
@@ -37,6 +55,7 @@ $name = $_SESSION['username'] ?? '';
                 <a class="nav-link hover-underline" href="gallery.html">Gallery</a>
                 <a class="nav-link hover-underline" href="about.html">About</a>
                 <a class="nav-link hover-underline" href="contact.html">Contact</a>
+                <a class="nav-link hover-underline" href="<?php echo $mappedLink ?>">Help</a>
             </div>
 
             <div class="links mobile-only">

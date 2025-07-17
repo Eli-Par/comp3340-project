@@ -1,0 +1,7 @@
+form {
+    --form-max-width: 100%;
+}
+
+.card {
+    max-width: calc(max(80vw, 600px));
+}
