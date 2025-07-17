@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'dbConnection.php';
+require_once 'dbConnection.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -21,6 +21,11 @@ if( $result->num_rows > 0) {
     // Verify their password, if invalid return an error
     if(!password_verify($password, $user["password"])) {
         header('Location: /comp3340-project/public_html/login.php?error=invalid');
+        exit();
+    }
+
+    if ($user["isActive"] == 0) {
+        header('Location: /comp3340-project/public_html/login.php?error=disabled');
         exit();
     }
 

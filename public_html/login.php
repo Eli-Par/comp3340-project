@@ -29,6 +29,16 @@
             }
             ?>
 
+            <?php
+            if (isset($_GET['error']) && $_GET['error'] == 'disabled') {
+                ?>
+                <div class="error">
+                    Your account has been disabled
+                </div>
+                <?php
+            }
+            ?>
+
             <div>
                 <label for="name">Usename</label>
                 <input required type="text" id="username" name="username" />

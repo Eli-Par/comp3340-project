@@ -59,7 +59,7 @@ $result = $preparedStatement->get_result();
 <main>
 <?php if ($userId != 0) { ?>
     <h1 style="margin-bottom: 10px;">Advice You Liked</h1>
-     createAdviceGrid($result); <?php
+    <?php createAdviceGrid($result); 
 } else { ?>
     <section class="card">
         <h2>Advice You Liked</h2>

@@ -6,6 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link rel="stylesheet" href="global.css">
+<?php
+require __DIR__ . '/../dbConnection.php';
+
+$headThemeFile = 'regular'; // fallback
+
+$headThemeStmt = $conn->prepare('SELECT theme FROM themes LIMIT 1');
+$headThemeStmt->execute();
+$headThemeResult = $headThemeStmt->get_result();
+
+if ($headThemeResult->num_rows > 0) {
+    $headThemeRow = $headThemeResult->fetch_assoc();
+    if ($headThemeRow['theme'] != '') {
+        $headThemeFile = $headThemeRow['theme'];
+    }
+}
+?>
+
+<link rel="stylesheet" href="themes/<?php echo htmlspecialchars($headThemeFile); ?>.css">
 
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 

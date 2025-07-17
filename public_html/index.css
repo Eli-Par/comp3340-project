@@ -1,10 +1,23 @@
 main {
-    display: flex;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "left right";
+    gap: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+                "left"
+                "right";
+        gap: 1rem;
+    }
 }
 
 .left-column {
-    flex: 2.5;
+    grid-area: left;
 }
 
 .left-column h2 {
@@ -12,9 +25,11 @@ main {
 }
 
 .right-column {
-    flex: 1;
     background-color: rgb(236, 236, 236);
-
+    grid-area: right;
+    min-width: 0;
+    max-width: 100%;
+    height: fit-content;
 }
 
 .right-column h2 {

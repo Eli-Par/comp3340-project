@@ -1,6 +1,6 @@
 .advice-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, calc(25% - 4.5rem / 4)));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 1.5rem;
 }
 

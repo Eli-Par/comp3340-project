@@ -1,7 +1,25 @@
 <?php
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
-$username = $_SESSION['username'] ?? '';
+$name = $_SESSION['username'] ?? '';
+
+// Get current page
+$currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+// Help mapping
+$pageLinks = [
+    'admin.php' => 'https://example.com/admin/dashboard',
+    'index.php' => 'https://example.com/home',
+    'login.php' => 'https://example.com/auth',
+    'profile.php' => 'https://example.com/user/profile',
+];
+
+// Store the current pages help link
+if (isset($pageLinks[$currentPage])) {
+    $mappedLink = $pageLinks[$currentPage];
+} else {
+    $mappedLink = $pageLinks['index.php'];
+}
 
 ?>
 
@@ -34,9 +52,10 @@ $username = $_SESSION['username'] ?? '';
                         <a class="dropdown-item" href="add_discussion.php">Add Discussion</a>
                     </div>
                 </div>
-                <a class="nav-link hover-underline" href="gallary.html">Gallery</a>
+                <a class="nav-link hover-underline" href="gallery.html">Gallery</a>
                 <a class="nav-link hover-underline" href="about.html">About</a>
                 <a class="nav-link hover-underline" href="contact.html">Contact</a>
+                <a class="nav-link hover-underline" href="<?php echo $mappedLink ?>">Help</a>
             </div>
 
             <div class="links mobile-only">
@@ -55,7 +74,7 @@ $username = $_SESSION['username'] ?? '';
                         <a class="dropdown-item" href="#">Add Discussion</a>
 
                         <h4>Other</h4>
-                        <a class="dropdown-item" href="gallary.php">Gallary</a>
+                        <a class="dropdown-item" href="gallery.html">Gallery</a>
                         <a class="dropdown-item" href="about.php">About</a>
                         <a class="dropdown-item" href="contact.php">Contact</a>
                     </div>
@@ -66,12 +85,12 @@ $username = $_SESSION['username'] ?? '';
             if($userId != 0) { 
             ?>
                 <div class="dropdown right-container">
-                <a class="nav-link">Welcome <?php echo htmlentities($username) ?></a>
+                <a class="nav-link">Welcome <?php echo htmlentities($name) ?></a>
                 <div class="dropdown-content right-dropdown">
                     <?php 
                     if($isAdmin) { 
                     ?>
-                        <a class="dropdown-item" href="#">Admin Panel</a>
+                        <a class="dropdown-item" href="admin.php">Admin Panel</a>
                     <?php
                     }
                     ?>
