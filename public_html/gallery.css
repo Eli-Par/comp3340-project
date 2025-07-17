@@ -1,0 +1,50 @@
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.gallery-grid .content {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-grid img.content {
+    cursor: pointer;
+}
+
+.image-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.image-overlay > img {
+    width: 70vw;
+    height: auto;
+    max-height: 70vh;
+    cursor: default;
+}
+
+@media screen and (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .image-overlay>img {
+        width: calc(100vw - 20px);
+    }
+}

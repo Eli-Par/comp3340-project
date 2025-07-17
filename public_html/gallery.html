@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head Partial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <title>Travel Tipia</title>
+</head>
+
+<body>
+
+    <div id="image-overlay" class="image-overlay" style="display: none;">
+        <img src="gallery/balloons.jpg">
+    </div>
+
+    <!-- Header Partial -->
+    <header>
+        <a class="title-container" href="index.php">
+            <img src="TravelTipiaLogo.svg" style="width: 30px; height: 30px;">
+            <h1 class="title desktop-only">Travel Tipia</h1>
+        </a>
+        <nav class="nav-bar">
+            <a class="nav-link hover-underline" href="index.php">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 style="margin-bottom: 10px;">Gallery</h1>
+        <div id="gallery" class="gallery-grid"></div>
+    </main>
+
+    <!-- Footer Partial -->
+    <footer>
+        <p>&copy; 2025 Travel Tipia. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('gallery').addEventListener('click', (e) => {
+                if(e.target.tagName === 'IMG') {
+                    e.stopPropagation();
+
+                    const overlayImg = document.querySelector('.image-overlay > img');
+                    overlayImg?.setAttribute('src', e.target.src);
+                    overlayImg?.setAttribute('alt', e.target.alt);
+
+                    const overlay = document.querySelector('.image-overlay');
+                    overlay.style.display = 'flex';
+                }
+            });
+
+            document.getElementById('image-overlay').addEventListener('click', (e) => {
+                if (e.target.tagName !== 'IMG') {
+                    e.stopPropagation();
+                    const overlay = document.querySelector('.image-overlay');
+                    overlay.style.display = 'none';
+                }
+            });
+
+            fetch('../private/gallery_api.php')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const files = data.files;
+
+                const galleryContainer = document.getElementById("gallery");
+
+                Object.values(files).forEach((f) => {
+                    if(f.endsWith('.png') || f.endsWith('.jpg') || f.endsWith('.jpeg') || f.endsWith('.webp')) {
+                        const image = document.createElement('img');
+                        image.classList.add('content');
+                        image.setAttribute('src', `gallery/${f}`);
+                        image.setAttribute('alt', f);
+
+                        galleryContainer.appendChild(image);
+                    }
+                    else if(f.endsWith('.mp4')) {
+                        const video = document.createElement('video');
+                        video.classList.add('content', 'video');
+                        video.setAttribute('src', `gallery/${f}`);
+                        video.setAttribute('controls', '');
+
+                        galleryContainer.appendChild(video);
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>

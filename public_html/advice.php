@@ -130,7 +130,7 @@ if ($result->num_rows > 0) {
 </main>
 
 <script>
-    const select = document.querySelector('section.card > select');
+    const select = document.querySelector('section.card > .title-bar > select');
     const fullContent = document.getElementById('fullContent');
     const summaryContent = document.getElementById('summaryContent');
 
@@ -144,7 +144,6 @@ if ($result->num_rows > 0) {
         }
     });
 
-    // Optionally, trigger the change event once on page load to ensure correct visibility:
     select.dispatchEvent(new Event('change'));
 </script>
 

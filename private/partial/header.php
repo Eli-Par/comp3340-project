@@ -34,7 +34,7 @@ $name = $_SESSION['username'] ?? '';
                         <a class="dropdown-item" href="add_discussion.php">Add Discussion</a>
                     </div>
                 </div>
-                <a class="nav-link hover-underline" href="gallary.html">Gallery</a>
+                <a class="nav-link hover-underline" href="gallery.html">Gallery</a>
                 <a class="nav-link hover-underline" href="about.html">About</a>
                 <a class="nav-link hover-underline" href="contact.html">Contact</a>
             </div>
@@ -55,7 +55,7 @@ $name = $_SESSION['username'] ?? '';
                         <a class="dropdown-item" href="#">Add Discussion</a>
 
                         <h4>Other</h4>
-                        <a class="dropdown-item" href="gallary.php">Gallary</a>
+                        <a class="dropdown-item" href="gallery.html">Gallery</a>
                         <a class="dropdown-item" href="about.php">About</a>
                         <a class="dropdown-item" href="contact.php">Contact</a>
                     </div>
