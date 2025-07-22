@@ -53,6 +53,7 @@ $resultDiscussion = $stmtDiscussion->get_result();
 
     <script src="advice_interactions.js"></script>
     <script src="discussion_interactions.js"></script>
+    <script src="edit_discussion.js"></script>
 </head>
 
 <?php include '../private/partial/header.php'; ?>

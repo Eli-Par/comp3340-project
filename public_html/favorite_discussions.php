@@ -8,11 +8,12 @@ require '../private/dbConnection.php';
 $userId = $_SESSION['userId'] ?? 0;
 
 $query = "SELECT 
-    discussionId, 
-    title, 
-    content, 
-    username,
-    dateCreated,
+    a.discussionId, 
+    a.title, 
+    a.content, 
+    a.authorId,
+    users.username,
+    a.dateCreated,
 
      -- Like and dislike count queries
     (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,
@@ -47,6 +48,7 @@ $result = $preparedStatement->get_result();
     
 
     <script src="discussion_interactions.js"></script>
+    <script src="edit_discussion.js"></script>
 </head>
 
 <?php include '../private/partial/header.php'; ?>

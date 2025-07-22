@@ -28,6 +28,7 @@ $result = $preparedStatement->get_result();
     
 
     <script src="discussion_interactions.js"></script>
+    <script src="edit_discussion.js"></script>
 </head>
 
 <?php include '../private/partial/header.php'; ?>

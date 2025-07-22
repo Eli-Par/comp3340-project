@@ -25,3 +25,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.discussion-edit-card .edit-action,
+.discussion-edit-card .delete-action {
+    transition: all 0.2s ease;
+    padding-top: 5px;
+}
+
+.discussion-edit-card .edit-action:hover {
+    transform: scale(1.1);
+    color: var(--accent-color-500);
+}
+
+.discussion-edit-card .delete-action:hover {
+    transform: scale(1.1);
+    color: var(--danger-color);
+}

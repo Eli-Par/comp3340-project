@@ -75,7 +75,7 @@ CREATE TABLE discussion_interactions (
     userId INT NOT NULL,
     date_interacted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (discussionId, userId),
-    FOREIGN KEY (discussionId) REFERENCES discussion(discussionId),
+    FOREIGN KEY (discussionId) REFERENCES discussion(discussionId) ON DELETE CASCADE,
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
@@ -87,7 +87,7 @@ CREATE TABLE discussion_comments (
     authorId INT NOT NULL,
     content TEXT NOT NULL,
     dateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (discussionId) REFERENCES discussion(discussionId),
+    FOREIGN KEY (discussionId) REFERENCES discussion(discussionId) ON DELETE CASCADE,
     FOREIGN KEY (authorId) REFERENCES users(userId)
 );
 

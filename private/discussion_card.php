@@ -11,9 +11,18 @@ function createDiscussionInteractionButtons($discussionId, $hearts, $isHearted, 
     ';
 }
 
-function createDiscussionCard($discussionId, $title, $content, $username, $hearts, $isHearted)
+function createDiscussionCard($discussionId, $title, $content, $authorId, $username, $hearts, $isHearted)
 {
     $safeContent = htmlentities($content);
+
+    $editActions = '';
+    if($_SESSION['userId'] == $authorId || $_SESSION['isAdmin']) {
+        $editActions = '
+            <div class="discussion-edit-card">
+                <span class="material-symbols-outlined edit-action" onclick="event.preventDefault(); event.stopPropagation(); window.location.href=\'edit_discussion.php?discussionId=' . $discussionId . '\';">edit</span>
+                <span class="material-symbols-outlined delete-action" onclick="deleteItem(event, this)" data-discussion-id="' . $discussionId . '">delete</span>
+            </div>';
+    }
 
     //Create the card with the information inserted
     return '
@@ -24,8 +33,9 @@ function createDiscussionCard($discussionId, $title, $content, $username, $heart
                 <div style="margin-right: 10px;">By ' . htmlspecialchars($username) . '</div>
                 ' . createDiscussionInteractionButtons($discussionId, $hearts, $isHearted) . '
             </div>
-            <p class="discussion-card-content">' . $safeContent . '</p>
-        </section>
+            <p class="discussion-card-content">' . $safeContent . '</p>'
+            . $editActions .
+        '</section>
     </a>
     ';
 }

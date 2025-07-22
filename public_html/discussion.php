@@ -10,11 +10,12 @@ $discussionId = $_GET['discussionId'] ?? 0;
 
 //Get the discussion details
 $query = "SELECT 
-    discussionId, 
-    title, 
-    content, 
-    username,
-    dateCreated, 
+    a.discussionId, 
+    a.title, 
+    a.content, 
+    a.authorId,
+    users.username,
+    a.dateCreated, 
     dateModified,
 
     -- Heart count queries
@@ -79,6 +80,7 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="discussion.css" />
 
     <script src="discussion_interactions.js"></script>
+    <script src="edit_discussion.js"></script>
 </head>
 
 <?php include '../private/partial/header.php'; ?>

@@ -2,11 +2,12 @@
 function trending_discussion_query($limit=12) {
 return 
     "SELECT 
-        discussionId, 
-        title, 
-        content, 
-        username,
-        dateCreated,
+        a.discussionId, 
+        a.title, 
+        a.content, 
+        a.authorId,
+        users.username,
+        a.dateCreated,
 
         -- Like and dislike count queries
         (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,

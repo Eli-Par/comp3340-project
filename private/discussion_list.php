@@ -17,11 +17,12 @@ function createDiscussionList($discussionResult)
         $title = $row['title'];
         $content = $row['content'];
         $username = $row['username'];
+        $authorId = $row['authorId'];
 
         $hearts = $row['heartCount'];
         $isHearted = $row['heartedByUser'];
 
-        echo createDiscussionCard($discussionId, $title, $content, $username, $hearts, $isHearted);
+        echo createDiscussionCard($discussionId, $title, $content, $authorId, $username, $hearts, $isHearted);
     }
 
     echo '</section>';
