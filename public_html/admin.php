@@ -23,7 +23,7 @@ if ($result && $row = $result->fetch_assoc()) {
 <html lang="en">
 
 <head>
-    <title>Travel Tipia</title>
+    
 
     <?php include '../private/partial/head.php'; ?>
 

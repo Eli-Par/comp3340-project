@@ -1,4 +1,6 @@
 <?php
+$pageKeywords = "read advice, curated post, trust worthy, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 require_once '../private/advice_card.php';
@@ -81,7 +83,7 @@ if ($result->num_rows > 0) {
 <html lang="en">
 
 <head>
-    <title>Travel Tipia</title>
+    
 
     <?php include '../private/partial/head.php'; ?>
 

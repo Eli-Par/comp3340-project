@@ -42,7 +42,7 @@ $resultDiscussion = $stmtDiscussion->get_result();
 <html lang="en">
 
 <head>
-    <title>Travel Tipia</title>
+    
 
     <?php include '../private/partial/head.php'; ?>
 

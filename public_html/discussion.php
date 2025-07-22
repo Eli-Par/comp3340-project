@@ -72,7 +72,7 @@ if ($result->num_rows > 0) {
 <html lang="en">
 
 <head>
-    <title>Travel Tipia</title>
+    
 
     <?php include '../private/partial/head.php'; ?>
 

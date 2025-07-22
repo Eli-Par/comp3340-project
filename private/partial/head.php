@@ -28,3 +28,22 @@ if ($headThemeResult->num_rows > 0) {
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+<?php
+$scriptName = basename($_SERVER['SCRIPT_NAME'], '.php');
+
+if ($scriptName === 'index') {
+    $pageTitle = 'Travel Tipia';
+    $currentPageName = 'home page';
+} else {
+    // Convert underscores to spaces and capitalize words
+    $currentPageName = str_replace('_', ' ', $scriptName);
+    $pageTitle = ucwords($currentPageName) . ' | Travel Tipia';
+}
+
+$pageKeywords = $pageKeywords ?? 'travel, explore, adventure, community, tip, hub';
+?>
+<title><?php echo $pageTitle ?></title>
+
+<meta name="description" content="<?php echo htmlspecialchars($pageDescription) ?? 'A travel tip site and discussion board for all your travel needs'; ?>">
+<meta name="keywords" content="<?php echo htmlspecialchars($currentPageName) . ', ' . htmlspecialchars($pageKeywords); ?>">

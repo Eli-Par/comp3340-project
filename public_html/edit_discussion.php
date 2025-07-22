@@ -39,7 +39,7 @@ $content = $discussion['content'];
 <html lang="en">
 
 <head>
-    <title>Travel Tipia</title>
+    
     <?php include '../private/partial/head.php'; ?>
     <link rel="stylesheet" href="add_advice.css" />
 </head>

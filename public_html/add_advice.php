@@ -14,7 +14,7 @@ if ($userId == 0 || !$isAdmin) {
 <html lang="en">
 
 <head>
-    <title>Travel Tipia</title>
+    
 
     <?php include '../private/partial/head.php'; ?>
 
