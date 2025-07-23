@@ -24,6 +24,7 @@ if( $result->num_rows > 0) {
         exit();
     }
 
+    //If user no active, return so
     if ($user["isActive"] == 0) {
         header('Location: /comp3340-project/public_html/login.php?error=disabled');
         exit();

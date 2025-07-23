@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Check if logged in
 if (!isset($_SESSION["userId"]) || !$_SESSION["userId"]) {
     echo json_encode(['success' => false, 'message' => 'User not logged in']);
     exit();
@@ -8,11 +9,13 @@ if (!isset($_SESSION["userId"]) || !$_SESSION["userId"]) {
 
 $userId = $_SESSION['userId'];
 
+//validate content
 if (!isset($_POST['content']) || strlen($_POST['content']) > 1000 || $_POST['content'] == '') {
     echo json_encode(['success' => false, 'message' => 'Content field invalid']);
     exit();
 }
 
+//Validate discussion id passes
 if (!isset($_POST['discussionId'])) {
     echo json_encode(['success' => false, 'message' => 'Content field invalid']);
     exit();
@@ -24,6 +27,7 @@ require 'dbConnection.php';
 
 $content = $_POST['content'];
 
+//Insert comment into db
 $preparedStatement = $conn->prepare('INSERT INTO discussion_comments (discussionId, authorId, content) VALUES (?, ?, ?)');
 $preparedStatement->bind_param('iis', $discussionId, $userId, $content);
 $preparedStatement->execute();

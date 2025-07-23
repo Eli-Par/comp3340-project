@@ -10,6 +10,7 @@ if (!isset($_SESSION['userId']) || $_SESSION['userId'] == 0) {
 
 $userId = (int) $_SESSION['userId'];
 
+//Check advice id and action provided
 if (
     !isset($_POST['adviceId']) ||
     !isset($_POST['action'])
@@ -21,6 +22,7 @@ if (
 $adviceId = (int) $_POST['adviceId'];
 $action = $_POST['action'];
 
+//Check action is a valid type
 if (!in_array($action, ['like', 'dislike'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid action']);
     exit;
@@ -30,6 +32,7 @@ $isLike = $action == 'like' ? 1 : 0;
 
 require 'dbConnection.php';
 
+//Check if user has existing interaction with advice
 $stmt = $conn->prepare("SELECT isLike FROM advice_interactions WHERE adviceId = ? AND userId = ?");
 $stmt->bind_param('ii', $adviceId, $userId);
 $stmt->execute();

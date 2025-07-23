@@ -1,6 +1,7 @@
 <?php
 require_once 'advice_card.php';
 
+//Take a db result of advice and create a grid of advice cards
 function createAdviceGrid($adviceResult)
 {
     if (!$adviceResult || $adviceResult->num_rows === 0) {

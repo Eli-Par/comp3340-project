@@ -10,7 +10,7 @@ function createDiscussionList($discussionResult)
 
     echo '<section class="discussion-list">';
 
-    // Create a grid of advice by iterating over the entries
+    // Create a list of discussions by iterating over the entries
     while ($row = $discussionResult->fetch_assoc()) {
 
         $discussionId = $row['discussionId'];

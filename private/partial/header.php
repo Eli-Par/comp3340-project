@@ -20,7 +20,6 @@ if (isset($pageLinks[$currentPage])) {
 } else {
     $mappedLink = $pageLinks['index.php'];
 }
-
 ?>
 
 <body>
@@ -30,8 +29,11 @@ if (isset($pageLinks[$currentPage])) {
             <h1 class="title desktop-only">Travel Tipia</h1>
         </a>
         <nav class="nav-bar">
+            <!-- desktop only navigation -->
             <div class="links desktop-only">
                 <a class="nav-link hover-underline" href="index.php">Home</a>
+
+                <!-- Advice dropdown -->
                 <div class="dropdown">
                     <a class="nav-link">Advice</a>
                     <div class="dropdown-content">
@@ -42,6 +44,8 @@ if (isset($pageLinks[$currentPage])) {
                         <a class="dropdown-item" href="unread_advice.php">Unread Advice</a>
                     </div>
                 </div>
+
+                <!-- Discussion dropdown -->
                 <div class="dropdown">
                     <a class="nav-link">Discussion</a>
                     <div class="dropdown-content">
@@ -52,36 +56,40 @@ if (isset($pageLinks[$currentPage])) {
                         <a class="dropdown-item" href="add_discussion.php">Add Discussion</a>
                     </div>
                 </div>
+
                 <a class="nav-link hover-underline" href="gallery.html">Gallery</a>
                 <a class="nav-link hover-underline" href="about.html">About</a>
                 <a class="nav-link hover-underline" href="contact.html">Contact</a>
                 <a class="nav-link hover-underline" href="<?php echo $mappedLink ?>">Help</a>
             </div>
 
+            <!-- mobile only navigation -->
             <div class="links mobile-only">
                 <div class="dropdown">
                     <a class="nav-link">Menu</a>
                     <div class="dropdown-content sectioned-dropdown">
                         <h4>Advice</h4>
-                        <a class="dropdown-item" href="#">All Advice</a>
-                        <a class="dropdown-item" href="#">Recent Advice</a>
-                        <a class="dropdown-item" href="#">Popular Advice</a>
-                        <a class="dropdown-item" href="#">Favourite Advice</a>
+                        <a class="dropdown-item" href="all_advice.php">All Advice</a>
+                        <a class="dropdown-item" href="recent_advice.php">Recent Advice</a>
+                        <a class="dropdown-item" href="popular_advice.php">Popular Advice</a>
+                        <a class="dropdown-item" href="liked_advice.php">Favourite Advice</a>
 
                         <h4>Discussion</h4>
-                        <a class="dropdown-item" href="#">All Discussions</a>
-                        <a class="dropdown-item" href="#">My Discussions</a>
-                        <a class="dropdown-item" href="#">Add Discussion</a>
+                        <a class="dropdown-item" href="all_discussions.php">All Discussions</a>
+                        <a class="dropdown-item" href="my_discussions.php">My Discussions</a>
+                        <a class="dropdown-item" href="add_discussion.php">Add Discussion</a>
 
                         <h4>Other</h4>
                         <a class="dropdown-item" href="gallery.html">Gallery</a>
-                        <a class="dropdown-item" href="about.php">About</a>
-                        <a class="dropdown-item" href="contact.php">Contact</a>
+                        <a class="dropdown-item" href="about.html">About</a>
+                        <a class="dropdown-item" href="contact.html">Contact</a>
+                        <a class="dropdown-item" href="<?php echo $mappedLink ?>">Help</a>
                     </div>
                 </div>
             </div>
 
             <?php
+            //If user is logged in show welcome dropdown with account functions, otherwise show login button
             if($userId != 0) { 
             ?>
                 <div class="dropdown right-container">
@@ -111,6 +119,7 @@ if (isset($pageLinks[$currentPage])) {
     </header>      
 
     <script>
+        //Listen for click and hover events on dropdowns and change its open or closed state accordingly by modifying the height
         document.querySelectorAll('.dropdown').forEach(dropdown => {
             const dropdownContent = dropdown.querySelector('.dropdown-content');
 

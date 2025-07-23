@@ -1,15 +1,17 @@
 <?php
 session_start();
 
+//Check if user logged in
 if (!isset($_SESSION["userId"]) || !$_SESSION["userId"]) {
     http_response_code(403);
     echo "Not authenticated";
     exit();
 }
 
+//Check that discussionId provided
 if (!isset($_POST['discussionId']) || !is_numeric($_POST['discussionId'])) {
     http_response_code(400);
-    echo "InvaldiscussionId discussion ID";
+    echo "Invald discussionId";
     exit();
 }
 
@@ -24,11 +26,12 @@ if ($isAdmin) {
     $stmt = $conn->prepare("DELETE FROM discussion WHERE discussionId = ?");
     $stmt->bind_param('i', $discussionId);
 } else {
-    // otherwise can only delete owned discussion
+    //otherwise can only delete owned discussion (where author is user)
     $stmt = $conn->prepare("DELETE FROM discussion WHERE discussionId = ? AND authorId = ?");
     $stmt->bind_param('ii', $discussionId, $userId);
 }
 
+//Execute the statement and return a response for if it worked.
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
         http_response_code(200);

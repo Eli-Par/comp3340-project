@@ -1,5 +1,5 @@
 <?php
-//Create interaction section for the advice specified
+//Create interaction section for the advice specified. This is for the like and dislike buttons. Store the advice id on them so they can be referenced later
 function createAdviceInteractionButtons($adviceId, $likes, $dislikes, $isLiked, $isDisliked, $pill=false)
 {
     return '
@@ -16,6 +16,7 @@ function createAdviceInteractionButtons($adviceId, $likes, $dislikes, $isLiked, 
     ';
 }
 
+//Create a card tile for the advice with the specified content
 function createAdviceCard($adviceId, $title, $content, $username, $likes, $dislikes, $isLiked, $isDisliked)
 {
     // Truncate content after 150 characters

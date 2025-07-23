@@ -1,4 +1,6 @@
 <?php
+//Return sql query string for fetching trending discussions.
+//A discussion is trending if it has any hearts in the last 7 days and is in the top [limit] discussions by hearts added in the last 7 days
 function trending_discussion_query($limit=12) {
 return 
     "SELECT 
@@ -31,6 +33,6 @@ return
         WHERE a1.discussionId = a.discussionId 
         AND a1.dateInteracted >= NOW() - INTERVAL 7 DAY
     ) DESC, dateCreated DESC
-    LIMIT 12";
+    LIMIT $limit";
 }
 ?>

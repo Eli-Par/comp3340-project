@@ -1,4 +1,5 @@
 <?php
+//Create discussion heart button section
 function createDiscussionInteractionButtons($discussionId, $hearts, $isHearted, $pill = false)
 {
     return '
@@ -11,10 +12,12 @@ function createDiscussionInteractionButtons($discussionId, $hearts, $isHearted, 
     ';
 }
 
+//Create a card for the discussion tile with the provided info
 function createDiscussionCard($discussionId, $title, $content, $authorId, $username, $hearts, $isHearted)
 {
     $safeContent = htmlentities($content);
 
+    //If user is admin or author setup an edit section
     $editActions = '';
     if($_SESSION['userId'] == $authorId || $_SESSION['isAdmin']) {
         $editActions = '

@@ -2,8 +2,8 @@
 
 require_once 'dbConnection.php';
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirmPassword'];
 $bio = $_POST['bio'];
 
@@ -13,26 +13,31 @@ if(empty($username)) {
     exit();
 }
 
-if (empty($username)) {
+//Check if password provided
+if (empty($password)) {
     header("Location: /comp3340-project/public_html/signup.php?error=password");
     exit();
 }
 
+//Check username valid length
 if (strlen($username) < 4 || strlen($username) > 50) {
     header("Location: /comp3340-project/public_html/signup.php?error=usernameLength");
     exit();
 }
 
+//Check password valid length
 if (strlen($password) < 8 || strlen($password) > 100) {
     header("Location: /comp3340-project/public_html/signup.php?error=passwordLength");
     exit();
 }
 
+//Check bio valid length
 if (strlen($bio) > 500) {
     header("Location: /comp3340-project/public_html/signup.php?error=bio");
     exit();
 }
 
+//Check passwords match
 if ($password != $confirmPassword) {
     header("Location: /comp3340-project/public_html/signup.php?error=passwordMatch");
     exit();

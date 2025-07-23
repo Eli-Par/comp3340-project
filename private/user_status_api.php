@@ -30,6 +30,7 @@ $isActive = trim($_POST['isActive']);
 require_once 'dbConnection.php';
 
 try {
+    //update the users status and return result
     $stmt = $conn->prepare("UPDATE users SET isActive = ? WHERE userId = ?");
     $stmt->bind_param('si', $isActive, $userId);
     $stmt->execute();

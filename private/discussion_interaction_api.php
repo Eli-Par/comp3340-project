@@ -2,11 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-// Error handling (optional but recommended)
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-error_reporting(E_ALL);
-
+//Check if user logged in
 if (!isset($_SESSION['userId']) || $_SESSION['userId'] == 0) {
     echo json_encode(['success' => false, 'message' => 'User not logged in']);
     exit;
@@ -14,6 +10,7 @@ if (!isset($_SESSION['userId']) || $_SESSION['userId'] == 0) {
 
 $userId = (int) $_SESSION['userId'];
 
+//Check that discussion id provided
 if (!isset($_POST['discussionId'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid request']);
     exit;
@@ -31,6 +28,7 @@ $result = $stmt->get_result();
 $existingInteraction = $result->fetch_assoc();
 $stmt->close();
 
+//If interaction exists, delete it, otherwise add it (acts as a toggle)
 if ($existingInteraction) {
     $stmt = $conn->prepare("DELETE FROM discussion_interactions WHERE discussionId = ? AND userId = ?");
     $stmt->bind_param('ii', $discussionId, $userId);
