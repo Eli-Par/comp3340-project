@@ -1,3 +1,4 @@
+/* Style grid of gallery items */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -5,6 +6,7 @@
     align-items: center;
 }
 
+/* Set sizing and styling of items in gallery grid */
 .gallery-grid .content {
     width: 100%;
     max-width: 100%;
@@ -20,6 +22,7 @@
     cursor: pointer;
 }
 
+/* Image popup overlay background absolutely positioned over the entire screen */
 .image-overlay {
     position: absolute;
     width: 100vw;
@@ -32,6 +35,7 @@
     cursor: pointer;
 }
 
+/* Set size of image in popup overlay */
 .image-overlay > img {
     width: 70vw;
     height: auto;
@@ -39,6 +43,7 @@
     cursor: default;
 }
 
+/* Shrink grid and overlay on small screens */
 @media screen and (max-width: 600px) {
     .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

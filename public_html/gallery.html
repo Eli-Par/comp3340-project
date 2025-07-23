@@ -22,8 +22,9 @@
 
 <body>
 
+    <!-- Image overlay that will go over all items when set visible, initially hidden -->
     <div id="image-overlay" class="image-overlay" style="display: none;">
-        <img src="gallery/balloons.jpg">
+        <img src="">
     </div>
 
     <!-- Header Partial -->
@@ -37,6 +38,7 @@
         </nav>
     </header>
 
+    <!-- gallery with section for gallery images (filled using js) -->
     <main>
         <h1 style="margin-bottom: 10px;">Gallery</h1>
         <div id="gallery" class="gallery-grid"></div>
@@ -49,19 +51,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            //When image in gallery is clicked open popup
             document.getElementById('gallery').addEventListener('click', (e) => {
                 if(e.target.tagName === 'IMG') {
                     e.stopPropagation();
 
+                    //Find image overlay image and set the img
                     const overlayImg = document.querySelector('.image-overlay > img');
                     overlayImg?.setAttribute('src', e.target.src);
                     overlayImg?.setAttribute('alt', e.target.alt);
 
+                    //Set the overlay visible
                     const overlay = document.querySelector('.image-overlay');
                     overlay.style.display = 'flex';
                 }
             });
 
+            //When overlay background clicked hide overlay. Dont do so when clicking the image itself
             document.getElementById('image-overlay').addEventListener('click', (e) => {
                 if (e.target.tagName !== 'IMG') {
                     e.stopPropagation();
@@ -70,15 +76,17 @@
                 }
             });
 
+            //Fetch list of images in gallery directory
             fetch('../private/gallery_api.php')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 const files = data.files;
 
                 const galleryContainer = document.getElementById("gallery");
 
+                //iterate over file paths received and setup the gallery items
                 Object.values(files).forEach((f) => {
+                    //If an image type, append an img tag in the grid
                     if(f.endsWith('.png') || f.endsWith('.jpg') || f.endsWith('.jpeg') || f.endsWith('.webp')) {
                         const image = document.createElement('img');
                         image.classList.add('content');
@@ -87,7 +95,7 @@
 
                         galleryContainer.appendChild(image);
                     }
-                    else if(f.endsWith('.mp4')) {
+                    else if(f.endsWith('.mp4')) { // if a video append a video into the grid
                         const video = document.createElement('video');
                         video.classList.add('content', 'video');
                         video.setAttribute('src', `gallery/${f}`);

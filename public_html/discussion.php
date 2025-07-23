@@ -21,7 +21,7 @@ $query = "SELECT
     -- Heart count queries
     (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,
     
-    -- Booleans for current user
+    -- user hearted discussion?
     EXISTS (
         SELECT 1 FROM discussion_interactions a4
         WHERE a4.discussionId = a.discussionId AND a4.userId = ?
@@ -34,6 +34,7 @@ $preparedStatement->execute();
 
 $result = $preparedStatement->get_result();
 
+//Get comments for discussion
 $queryComments = "SELECT 
         username, 
         content, 
@@ -72,8 +73,6 @@ if ($result->num_rows > 0) {
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="interactions.css" />
@@ -86,9 +85,11 @@ if ($result->num_rows > 0) {
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- discussion section with title and content -->
     <section class="card" style="max-width: 90vw; margin: 0 auto;">
         <h2><?php echo htmlentities($title) ?></h2>
         <?php 
+            //Format dates
             $dateCreated = date("F j, Y", strtotime($discussion["dateCreated"]));
             $dateModified = date("F j, Y", strtotime($discussion["dateModified"]));
 
@@ -112,13 +113,16 @@ if ($result->num_rows > 0) {
         </p>
     </section>
 
+    <!-- comment section card -->
     <section class="card comment-section-card">
         <h2>Comments</h2>
+        <!-- Show comments or text explaining no comments yet -->
         <?php if ($commentResult->num_rows == 0) { ?>
             <p style="text-align: center;">No comments have been posted yet!</p>
         <?php } else { ?>
             <div id="comment-section">
                 <?php
+                //Iterate over comments and put into cards
                 while ($row = $commentResult->fetch_assoc()) {
                     echo '
                     <p class="card comment">
@@ -129,6 +133,7 @@ if ($result->num_rows > 0) {
                 ?>
             </div>
         <?php } ?>
+        <!-- if user logged out show login prompt, otherwise show post a comment -->
         <?php if($userId == 0) { ?>
             <a href="login.php" style="color: black; text-align: center;"><h3 style="margin-top: 16px;">Login to Post a Comment</h3></a>
         <?php } else { ?>
@@ -148,11 +153,13 @@ if ($result->num_rows > 0) {
     document.addEventListener('DOMContentLoaded', () => {
         const commentForm = document.getElementById('comment-form');
 
+        //When comment form submitted, send comment
         commentForm?.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const content = document.getElementById('content').value;
 
+            //Send comment content and discussion id to add comment api
             const formData = new URLSearchParams();
             formData.append('content', content);
             formData.append('discussionId', <?php echo json_encode((int) $discussionId); ?>)
@@ -166,13 +173,16 @@ if ($result->num_rows > 0) {
             .then(res => res.json())
             .then(data => {
                 if(data.success) {
+                    //get comment section
                     const commentSection = document.getElementById('comment-section');
                     
+                    //Create new comment card
                     const newComment = document.createElement('p');
                     newComment.classList.add('card');
                     newComment.classList.add('comment');
                     newComment.classList.add('new-comment');
 
+                    //Insert comment contents
                     const userSection = document.createElement('b');
                     userSection.textContent = <?php echo json_encode($username); ?> + ': ';
 
@@ -181,8 +191,10 @@ if ($result->num_rows > 0) {
                     newComment.appendChild(userSection);
                     newComment.appendChild(textSection);
 
+                    //Add comment to list
                     commentSection.appendChild(newComment);
 
+                    //Reset comment form
                     commentForm.reset();
                 }
                 else {
@@ -199,6 +211,7 @@ if ($result->num_rows > 0) {
     document.addEventListener('DOMContentLoaded', () => {
         const commentTextarea = document.getElementById('content');
 
+        //Update text area char count label
         const setCount = () => {
             const text = commentTextarea?.value ?? '';
 
@@ -209,6 +222,7 @@ if ($result->num_rows > 0) {
             if(commentMaxLabel) commentMaxLabel.textContent = `(${length} / 1000 characters)`;
         };
 
+        //Update comment max char count label at start and when edited
         setCount();
         commentTextarea?.addEventListener('input', () => {
             setCount();

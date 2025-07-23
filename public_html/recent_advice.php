@@ -39,8 +39,6 @@ $result = $preparedStatement->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_grid.css" />
@@ -52,6 +50,7 @@ $result = $preparedStatement->get_result();
 
 <?php include '../private/partial/header.php'; ?>
 
+<!-- show recent advice grid -->
 <main>
     <h1 style="margin-bottom: 10px;">Advice from the Last 7 Days</h1>
     <?php createAdviceGrid($result); ?>

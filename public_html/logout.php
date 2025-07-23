@@ -1,7 +1,10 @@
 <?php
 session_start();
+
+//Remove info from session superglobal variable
 $_SESSION = [];
 
+//Get and remove all session cookies
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(
@@ -15,7 +18,9 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
+//Destroy the session
 session_destroy();
 
+//Redirect to logout confirmation
 header("Location: /comp3340-project/public_html/logout_confirmation.html");
 exit();

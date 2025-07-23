@@ -1,3 +1,4 @@
+/* Style interaction container */
 .advice-card-interaction-container, .discussion-card-interaction-container {
     display: flex;
     gap: 20px;
@@ -7,6 +8,7 @@
     color: #444444;
 }
 
+/* style interaction container that is a pill type (visible container) */
 .interaction-pill {
     background-color: rgb(240, 240,240);
     border-radius: 20px;
@@ -14,6 +16,7 @@
     margin-top: 5px;
 }
 
+/* put interaction icon and count next to each other with cursor on hover */
 .interaction {
     display: flex;
     align-items: center;
@@ -21,12 +24,14 @@
     cursor: pointer;
 }
 
+/* style interaction count */
 .count {
     font-weight: 600;
     font-size: 1rem;
     color: #333333;
 }
 
+/* style hover and selected styles for interactions */
 .material-symbols-outlined,
 .count {
     transition: color 0.2s;

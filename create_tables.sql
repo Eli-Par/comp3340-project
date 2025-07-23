@@ -8,7 +8,6 @@ CREATE TABLE users (
     isActive TINYINT(1) NOT NULL DEFAULT 1
 );
 
-
 COMMIT;
 
 CREATE TABLE advice (

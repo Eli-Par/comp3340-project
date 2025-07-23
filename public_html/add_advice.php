@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//check if logged in and admin
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 if ($userId == 0 || !$isAdmin) {
@@ -14,8 +15,6 @@ if ($userId == 0 || !$isAdmin) {
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="add_advice.css" />
@@ -24,6 +23,7 @@ if ($userId == 0 || !$isAdmin) {
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- add advice form card -->
     <section class="card" style="margin: 0 auto; position: relative">
         <h2>Add Advice</h2>
         <form method="post" action="../private/add_advice_api.php">

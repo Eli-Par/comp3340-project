@@ -1,3 +1,4 @@
+/* Setup margins and hover effects for discussion list card */
 .discussion-card {
     margin: 16px 0px;
 
@@ -9,6 +10,7 @@
     transform: scale(1.01);
 }
 
+/* Setup container for discussion card top row items (title, interactions */
 .discussion-card-top-row {
     display: flex;
     flex-direction: row;
@@ -20,12 +22,14 @@
     margin-right: 10px;
 }
 
+/* keep content summary to 1 line with ellipses to cut off */
 .discussion-card-content {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+/* Style edit and delete buttons with hover effects */
 .discussion-edit-card .edit-action,
 .discussion-edit-card .delete-action {
     transition: all 0.2s ease;

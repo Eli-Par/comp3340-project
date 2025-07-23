@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Check if user is admin
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 if ($userId == 0 || !$isAdmin) {
@@ -10,6 +11,7 @@ if ($userId == 0 || !$isAdmin) {
 
 require_once '../private/dbConnection.php';
 
+//Get all users
 $stmt = $conn->prepare('SELECT * FROM users');
 $stmt->execute();
 $result = $stmt->get_result();
@@ -20,8 +22,6 @@ $result = $stmt->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="admin_users.css" />
@@ -40,6 +40,7 @@ $result = $stmt->get_result();
                 <th>Status</th>
             </thead>
             <?php
+            //Display table row for each user with a toggle checkbox for setting them active or not
             while( $row = $result->fetch_assoc() ) { ?>
                 <tr>
                     <td><?php echo htmlentities($row['username']) ?></td>
@@ -52,6 +53,7 @@ $result = $stmt->get_result();
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        //When a checkbox changes send a post request to update the active status of the relevant user to match on the backend
         document.querySelectorAll('input[type="checkbox"]').forEach(input => {
             input.addEventListener('input', () => {
                 const formData = new URLSearchParams();

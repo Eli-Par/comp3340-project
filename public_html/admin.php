@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Check if is admin
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 if ($userId == 0 || !$isAdmin) {
@@ -23,8 +24,6 @@ if ($result && $row = $result->fetch_assoc()) {
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="my_profile.css" />
@@ -35,6 +34,7 @@ if ($result && $row = $result->fetch_assoc()) {
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- Show different theme options and check them if selected -->
     <section class="card" style="max-width: 600px; margin: 20px auto; padding: 16px;">
         <h2>Select Theme</h2>
         <form id="themeForm">
@@ -60,6 +60,7 @@ if ($result && $row = $result->fetch_assoc()) {
         </form>
     </section>
 
+    <!-- Show other admin pages for nav -->
     <section class="card" style="width: fit-content; margin: 20px auto;">
         <h2>Admin Pages</h2>
         <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
@@ -69,6 +70,7 @@ if ($result && $row = $result->fetch_assoc()) {
         </div>
     </section>
 
+    <!-- Card for discussion posts over time graph -->
     <section class="card" style="margin-top: 16px;">
         <h2>Discussion Posts by Day Created</h2>
         <div id="chart"></div>
@@ -76,6 +78,7 @@ if ($result && $row = $result->fetch_assoc()) {
 </main>
 
 <script>
+    //Call api to get discussion post stats and plot line graph
     document.addEventListener('DOMContentLoaded', () => {
         fetch('../private/stat_api.php')
         .then(res => res.json())
@@ -96,28 +99,31 @@ if ($result && $row = $result->fetch_assoc()) {
 </script>
 
 <script>
-    document.getElementById('themeForm').addEventListener('change', function(e) {
-        if (e.target.name === 'theme') {
-            const theme = e.target.value;
+    document.addEventListener('DOMContentLoaded', () => {
+        //When a theme control changes value send api request to update theme and reload page.
+        document.getElementById('themeForm').addEventListener('change', function(e) {
+            if (e.target.name === 'theme') {
+                const theme = e.target.value;
 
-            const formData = new FormData();
-            formData.append('theme', theme);
+                const formData = new FormData();
+                formData.append('theme', theme);
 
-            fetch('../private/theme_api.php', {  // <-- update with your actual theme API URL
-                method: 'POST',
-                credentials: 'same-origin',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Failed to update theme: ' + (data.error || 'Unknown error'));
-                }
-            })
-            .catch(() => alert('Network or server error'));
-        }
+                fetch('../private/theme_api.php', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); //Reload page on success
+                    } else {
+                        alert('Failed to update theme: ' + (data.error || 'Unknown error'));
+                    }
+                })
+                .catch(() => alert('Network or server error'));
+            }
+        });
     });
 </script>
 

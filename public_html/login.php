@@ -6,8 +6,6 @@
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="login.css" />
@@ -16,10 +14,11 @@
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- login form card -->
     <section class="card" style="max-width: 600px; margin: 0 auto;">
         <h2>Login</h2>
         <form action="../private/login_api.php" method="post">
-            <?php
+            <?php //If invalid error display incorrect username or password message
             if (isset($_GET['error']) && $_GET['error'] == 'invalid') {
                 ?>
             <div class="error">
@@ -29,7 +28,7 @@
             }
             ?>
 
-            <?php
+            <?php //if disabled error display that users account is no longer active
             if (isset($_GET['error']) && $_GET['error'] == 'disabled') {
                 ?>
                 <div class="error">
@@ -39,6 +38,7 @@
             }
             ?>
 
+            <!-- login form fields -->
             <div>
                 <label for="name">Usename</label>
                 <input required type="text" id="username" name="username" />

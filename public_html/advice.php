@@ -24,7 +24,7 @@ $query = "SELECT
     (SELECT COUNT(*) FROM advice_interactions a1 WHERE a1.adviceId = a.adviceId AND a1.isLike = 1) AS likeCount,
     (SELECT COUNT(*) FROM advice_interactions a2 WHERE a2.adviceId = a.adviceId AND a2.isLike = 0) AS dislikeCount,
     
-    -- Booleans for current user
+    -- Booleans for current user if they liked or disliked
     EXISTS (
         SELECT 1 FROM advice_interactions a3
         WHERE a3.adviceId = a.adviceId AND a3.userId = ? AND a3.isLike = 1
@@ -83,8 +83,6 @@ if ($result->num_rows > 0) {
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="interactions.css" />
@@ -96,7 +94,9 @@ if ($result->num_rows > 0) {
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- card for advice content -->
     <section class="card" style="max-width: calc(min(100vw - 20px, 90vw)); margin: 0 auto; position: relative;">
+        <!-- title and summary select -->
         <div class="title-bar">
             <h2><?php echo htmlentities($title) ?></h2>
             <select>
@@ -105,12 +105,14 @@ if ($result->num_rows > 0) {
             </select>
         </div>
 
+        <!-- author and interactions -->
         <h3 style="text-align: center;">By <?php echo htmlentities($username) ?></h3>
-        
+
         <div style="display: flex; justify-content: center;">
             <?php echo createAdviceInteractionButtons($adviceId, $likes, $dislikes, $isLiked, $isDisliked, true) ?>
         </div>
 
+        <!-- full content with image, starts visible -->
         <div id="fullContent" style="text-align: center; margin-top: 10px;">
             <?php if ($imageLink != '') { ?>
                 <img style="max-width: 100%; max-height: 40vh;" src="<?php echo htmlentities($imageLink) ?>" alt=<?php htmlentities($imageAlt) ?>>
@@ -118,6 +120,7 @@ if ($result->num_rows > 0) {
             <p><?php echo nl2br(htmlspecialchars($content)) ?></p>
         </div>
 
+        <!-- summary content, starts hidden -->
         <p id="summaryContent" style="display: none; text-align: center; margin-top: 10px;">
             <?php echo nl2br(htmlspecialchars($summary)) ?>
         </p>
@@ -132,10 +135,12 @@ if ($result->num_rows > 0) {
 </main>
 
 <script>
+    //Find summary select, full and summary content sections
     const select = document.querySelector('section.card > .title-bar > select');
     const fullContent = document.getElementById('fullContent');
     const summaryContent = document.getElementById('summaryContent');
 
+    //When the summary select changes, switch which content is visible
     select.addEventListener('change', () => {
         if (select.value === 'fullContent') {
             fullContent.style.display = 'block';

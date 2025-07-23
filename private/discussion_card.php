@@ -19,7 +19,7 @@ function createDiscussionCard($discussionId, $title, $content, $authorId, $usern
 
     //If user is admin or author setup an edit section
     $editActions = '';
-    if($_SESSION['userId'] == $authorId || $_SESSION['isAdmin']) {
+    if(($_SESSION['userId'] ?? 0) == $authorId || ($_SESSION['isAdmin'] ?? false)) {
         $editActions = '
             <div class="discussion-edit-card">
                 <span class="material-symbols-outlined edit-action" onclick="event.preventDefault(); event.stopPropagation(); window.location.href=\'edit_discussion.php?discussionId=' . $discussionId . '\';">edit</span>

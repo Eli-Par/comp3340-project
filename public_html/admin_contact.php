@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Check if admin
 $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 if ($userId == 0 || !$isAdmin) {
@@ -10,6 +11,7 @@ if ($userId == 0 || !$isAdmin) {
 
 require_once '../private/dbConnection.php';
 
+//Get all contact messages
 $stmt = $conn->prepare('SELECT * FROM contact_messages');
 $stmt->execute();
 $result = $stmt->get_result();
@@ -20,8 +22,6 @@ $result = $stmt->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="admin_contact.css" />
@@ -35,6 +35,7 @@ $result = $stmt->get_result();
     <h1 style="margin-bottom: 10px;">Contact Messages</h1>
     <div class="messages-container">
         <?php
+        //Iterate over contact messages and display them in cards
         while ($row = $result->fetch_assoc()) {
             ?>
             <section class="card">
@@ -58,26 +59,5 @@ $result = $stmt->get_result();
         ?>
     </div>
 </main>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-            input.addEventListener('input', () => {
-                const formData = new URLSearchParams();
-                formData.append('userId', input.getAttribute('data-user-id'));
-                formData.append('isActive', input.checked ? 1 : 0);
-                fetch('../private/user_status_api.php', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: formData
-                }).then(res => res.json()).then((data) => {
-                    console.log(data);
-                });
-            });
-        });
-    });
-</script>
 
 <?php include '../private/partial/footer.php'; ?>

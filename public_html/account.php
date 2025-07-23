@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Check user logged in
 $userId = $_SESSION['userId'] ?? 0;
 if ($userId == 0) {
     header("Location: /comp3340/public_html/index.php");
@@ -9,6 +10,7 @@ if ($userId == 0) {
 
 require '../private/dbConnection.php';
 
+//Get logged in user details
 $statement = $conn->prepare("SELECT username, joinDate, bio FROM users WHERE userId = ?");
 $statement->bind_param("i", $userId);
 $statement->execute();
@@ -24,8 +26,6 @@ $bio = $user['bio'];
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="my_profile.css" />
@@ -36,6 +36,7 @@ $bio = $user['bio'];
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- profile edit form card -->
     <section class="card" style="max-width: 500px; margin: 0 auto; position: relative">
         <h2>Edit Profile</h2>
         <a href="my_profile.php" class="settings">

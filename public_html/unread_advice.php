@@ -7,7 +7,7 @@ require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
-//Get all advice entries with like counts and if the user liked or disliked
+//Get unread advice entries with like counts and if the user liked or disliked
 $query = "SELECT 
     adviceId, 
     title, 
@@ -43,29 +43,26 @@ $result = $preparedStatement->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="advice_grid.css" />
     <link rel="stylesheet" href="interactions.css" />
     
-
     <script src="advice_interactions.js"></script>
 </head>
 
 <?php include '../private/partial/header.php'; ?>
 
 <main>
-<?php if ($userId != 0 && $result->num_rows > 0) { ?>
+<?php if ($userId != 0 && $result->num_rows > 0) { //if logged in and has unread advice show advice grid ?>
     <h1 style="margin-bottom: 10px;">Unread Advice</h1>
     <?php createAdviceGrid($result); 
-} elseif($userId != 0) { ?>
+} elseif($userId != 0) { //if logged in but no unread advice show message saying there is no unread advice ?>
     <section class="card">
         <h2>Unread Advice</h2>
         <p style="text-align: center; margin-top: 10px;">You have read all the advice!</p>
     </section>
-<?php } else { ?>
+<?php } else { //if not logged in show login prompt ?>
     <section class="card">
         <h2>Unread Advice</h2>
         <p style="text-align: center; margin-top: 10px;">You need to be logged in to see your unread advice<br/><a href="login.php">Login here!</a></p>

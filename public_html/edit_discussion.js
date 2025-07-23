@@ -1,10 +1,10 @@
 function deleteItem(event, elem) {
-    console.log("Delete item...")
     event.stopPropagation();
     event.preventDefault();
 
     const discussionId = elem.getAttribute('data-discussion-id');
 
+    //Send api request to delete discussion
     fetch('../private/delete_discussion.php', {
         method: 'POST',
         headers: {
@@ -14,6 +14,7 @@ function deleteItem(event, elem) {
     })
     .then(response => {
         if (response.ok) {
+            //If discussion deleted succeeded reload page
             location.reload();
         } else {
             throw new Error('Failed to delete');

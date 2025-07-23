@@ -8,8 +8,6 @@ $userId = $_SESSION['userId'] ?? 0;
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="add_discussion.css" />
@@ -18,6 +16,7 @@ $userId = $_SESSION['userId'] ?? 0;
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- Add discussion form card, if not logged in show a login message and button -->
     <section class="card" style="margin: 0 auto; position: relative">
         <h2>Add Discussion</h2>
         <?php

@@ -2,6 +2,7 @@ section.card {
     position: relative;
 }
 
+/* Center title and allow wrapping on small screens if the select is static (otherwise only element is title) */
 .title-bar {
     display: flex;
     justify-content: center;
@@ -16,6 +17,7 @@ section.card {
     text-align: center;
 }
 
+/* Position summary select in top right of card */
 .title-bar select {
     position: absolute;
     top: 10px;
@@ -24,6 +26,7 @@ section.card {
     flex: 0 0 auto;
 }
 
+/* On small screens move the summary select to not be floating in the top right */
 @media (max-width: 800px) {
     .title-bar {
         justify-content: center;

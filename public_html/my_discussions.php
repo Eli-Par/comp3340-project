@@ -7,6 +7,7 @@ require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
+//Get discussions written by current user
 $query = "SELECT 
     a.discussionId, 
     a.title, 
@@ -15,10 +16,10 @@ $query = "SELECT
     users.username,
     a.dateCreated,
 
-     -- Like and dislike count queries
+     -- get heart count
     (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,
     
-    -- Booleans for current user
+    -- get if current user hearted discussion
     EXISTS (
         SELECT 1 FROM discussion_interactions a4
         WHERE a4.discussionId = a.discussionId AND a4.userId = ?
@@ -35,8 +36,6 @@ $result = $preparedStatement->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="discussion_list.css" />
@@ -49,6 +48,7 @@ $result = $preparedStatement->get_result();
 
 <?php include '../private/partial/header.php'; ?>
 
+<!-- display users written discussions in card with add discussion button. If signed out show a login prompt instead -->
 <main>
 <?php if ($userId != 0) { ?>
     <div style="display: flex; justify-content: space-between; align-items: center;">

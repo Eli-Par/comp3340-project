@@ -7,6 +7,7 @@ $userId = $_SESSION['userId'] ?? 0;
 $isAdmin = $_SESSION['isAdmin'] ?? 0;
 $discussionId = $_GET['discussionId'] ?? 0;
 
+//Check that user logged in and discussion id provided
 if ($userId == 0 || $discussionId == 0) {
     header("Location: index.php");
     exit();
@@ -47,9 +48,11 @@ $content = $discussion['content'];
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- edit discusson form card, loading discussions original details into form as initial values -->
     <section class="card" style="margin: 0 auto; position: relative; max-width: 600px;">
         <h2>Edit Discussion</h2>
         <form method="post" action="../private/edit_discussion_api.php">
+            <!-- hidden field to send discussonId -->
             <input type="hidden" name="discussionId" value="<?php echo (int) $discussionId; ?>" />
 
             <div>

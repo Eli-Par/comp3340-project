@@ -7,6 +7,7 @@ require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
+//Get favorite discussions
 $query = "SELECT 
     a.discussionId, 
     a.title, 
@@ -15,10 +16,10 @@ $query = "SELECT
     users.username,
     a.dateCreated,
 
-     -- Like and dislike count queries
+     -- heart count queries
     (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,
     
-    -- Booleans for current user
+    -- Is discussuon hearted by user
     EXISTS (
         SELECT 1 FROM discussion_interactions a4
         WHERE a4.discussionId = a.discussionId AND a4.userId = ?
@@ -39,8 +40,6 @@ $result = $preparedStatement->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="discussion_list.css" />
@@ -53,6 +52,7 @@ $result = $preparedStatement->get_result();
 
 <?php include '../private/partial/header.php'; ?>
 
+<!-- show discussion list and add discussion button or login prompt if logged out -->
 <main>
 <?php if ($userId != 0) { ?>
     <div style="display: flex; justify-content: space-between; align-items: center;">

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    //Add click listeners to all interaction containers (like or dislike)
+    //Add click listeners to all interaction containers (hearted)
     document.querySelectorAll('.discussion-card-interaction-container .interaction').forEach(interactable => {
         interactable.addEventListener('click', (e) => {
             //Prevent the a tag navigation from occuring
@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 //If it succeeded, update the count
                 if (data.success) {
-                    //Get the container of the like and dislike buttons/counters
+                    //Get the container of the heart counter
                     const interactionContainer = interactable.parentElement;
                     
                     //Get the interaction containers and the counters inside
                     const interactables = interactionContainer.querySelectorAll('.interaction');
                     const counts = interactionContainer.querySelectorAll('.count');
 
-                    //Update the counters
+                    //Update the counter
                     counts[0].textContent = data.heartCount;
                     interactables[0].classList.toggle('selected');
                 } else {

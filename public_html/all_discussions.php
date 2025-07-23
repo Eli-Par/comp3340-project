@@ -7,6 +7,7 @@ require '../private/dbConnection.php';
 
 $userId = $_SESSION['userId'] ?? 0;
 
+//Get discussions
 $query = "SELECT 
     a.discussionId, 
     a.title, 
@@ -15,10 +16,10 @@ $query = "SELECT
     users.username,
     a.dateCreated,
 
-     -- Like and dislike count queries
+     -- heart count count queries
     (SELECT COUNT(*) FROM discussion_interactions a1 WHERE a1.discussionId = a.discussionId) AS heartCount,
     
-    -- Booleans for current user
+    -- Does current user heart discussion
     EXISTS (
         SELECT 1 FROM discussion_interactions a4
         WHERE a4.discussionId = a.discussionId AND a4.userId = ?
@@ -35,8 +36,6 @@ $result = $preparedStatement->get_result();
 <html lang="en">
 
 <head>
-    
-
     <?php include '../private/partial/head.php'; ?>
 
     <link rel="stylesheet" href="discussion_list.css" />
@@ -50,6 +49,7 @@ $result = $preparedStatement->get_result();
 <?php include '../private/partial/header.php'; ?>
 
 <main>
+    <!-- show title and put add discussion button on right. Discussion list under it -->
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 style="margin-bottom: 10px;">All Discussions</h1>
         <button style="width: 16rem;" onclick="window.location.href='add_discussion.php'">Add Discussion</button>

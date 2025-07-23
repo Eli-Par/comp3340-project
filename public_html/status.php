@@ -1,4 +1,5 @@
 <?php
+//Db connection info
 $db_host = 'localhost';
 $db_username = 'root';
 $db_password = 'mysql';
@@ -29,6 +30,7 @@ $conn->close();
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <style>
+        /* basic status page styling (embedded to keep status page simple so it is less likely to go down) */
         body {
             font-family: Arial, sans-serif;
             margin: 1.5rem;
@@ -51,6 +53,7 @@ $conn->close();
 <body>
     <h1>Travel Tipia Status</h1>
 
+    <!-- display database status as established in php code above -->
     <div class="status">
         <strong>Database Connection:</strong>
         <span class="<?php echo $dbConnected ? 'ok' : 'fail' ?>">
@@ -58,12 +61,14 @@ $conn->close();
         </span>
     </div>
 
+    <!-- show server status as established in javascript code below -->
     <div class="status">
         <strong>Server status:</strong>
         <span id="fetch-status">Checking...</span>
     </div>
 
     <script>
+        //Fetch index.php, if it is available set status as online, otherwise set as offline
         fetch('index.php', { method: 'GET' })
             .then(response => {
                 const fetchStatus = document.getElementById('fetch-status');
