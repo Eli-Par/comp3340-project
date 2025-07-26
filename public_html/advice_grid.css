@@ -11,6 +11,14 @@
     transition: all 0.2s;
 }
 
+.advice-card h2 {
+    margin: 0px !important;
+}
+
+.advice-card p {
+    margin-top: 10px;
+}
+
 .advice-card:hover {
     transform: scale(1.025);
 }

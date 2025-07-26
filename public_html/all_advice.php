@@ -28,7 +28,7 @@ $query = "SELECT
         SELECT 1 FROM advice_interactions a4
         WHERE a4.adviceId = a.adviceId AND a4.userId = ? AND a4.isLike = 0
     ) AS dislikedByUser
-FROM advice a JOIN users ON a.authorId = users.userId";
+FROM advice a JOIN users ON a.authorId = users.userId ORDER BY adviceId DESC";
 $preparedStatement = $conn->prepare($query);
 $preparedStatement->bind_param("ii", $userId, $userId);
 $preparedStatement->execute();

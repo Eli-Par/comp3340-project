@@ -28,7 +28,7 @@ $adviceQuery = "SELECT
     EXISTS (
         SELECT 1 FROM advice_interactions a4 WHERE a4.adviceId = a.adviceId AND a4.userId = ? AND a4.isLike = 0
     ) AS dislikedByUser
-FROM advice a JOIN users ON a.authorId = users.userId";
+FROM advice a JOIN users ON a.authorId = users.userId ORDER BY adviceId DESC";
 $stmtAdvice = $conn->prepare($adviceQuery);
 $stmtAdvice->bind_param("ii", $userId, $userId);
 $stmtAdvice->execute();

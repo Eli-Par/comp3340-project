@@ -32,7 +32,7 @@ FROM advice a JOIN users ON a.authorId = users.userId
 WHERE EXISTS (
         SELECT 1 FROM advice_interactions a3
         WHERE a3.adviceId = a.adviceId AND a3.userId = ? AND a3.isLike = 1
-    )";
+    ) ORDER BY adviceId DESC";
 $preparedStatement = $conn->prepare($query);
 $preparedStatement->bind_param("iii", $userId, $userId, $userId);
 $preparedStatement->execute();

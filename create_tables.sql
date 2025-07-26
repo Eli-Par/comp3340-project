@@ -9,14 +9,14 @@ CREATE TABLE users (
     isActive TINYINT(1) NOT NULL DEFAULT 1                    
 );
 
-COMMIT;
+
 
 -- Advice table holds advice content
 CREATE TABLE advice (
     adviceId INT AUTO_INCREMENT PRIMARY KEY,                  
     authorId INT NOT NULL,                                    
     title VARCHAR(300) NOT NULL,                              
-    summary NOT NULL,                                         
+    summary TEXT NOT NULL,                                         
     content TEXT NOT NULL,                                    
     imageLink VARCHAR(500),                                   
     imageAlt VARCHAR(255) DEFAULT '',                         
@@ -24,7 +24,7 @@ CREATE TABLE advice (
     FOREIGN KEY (authorId) REFERENCES users(userId)           
 );
 
-COMMIT;
+
 
 -- Tracks likes/dislikes by users on advice posts
 CREATE TABLE advice_interactions (
@@ -36,7 +36,7 @@ CREATE TABLE advice_interactions (
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
-COMMIT;
+
 
 -- Tracks advice viewing history for users
 CREATE TABLE advice_history (
@@ -48,7 +48,7 @@ CREATE TABLE advice_history (
     FOREIGN KEY (adviceId) REFERENCES advice(adviceId)
 );
 
-COMMIT;
+
 
 -- Table for messages submitted through a contact form
 CREATE TABLE contact_messages (
@@ -60,7 +60,7 @@ CREATE TABLE contact_messages (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP            
 );
 
-COMMIT;
+
 
 -- Discussion table for user discussion posts
 CREATE TABLE discussion (
@@ -73,19 +73,19 @@ CREATE TABLE discussion (
     FOREIGN KEY (authorId) REFERENCES users(userId)
 );
 
-COMMIT;
+
 
 -- Tracks which users have hearted discussions
 CREATE TABLE discussion_interactions (
     discussionId INT NOT NULL,                                
     userId INT NOT NULL,                                      
-    date_interacted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    dateInteracted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (discussionId, userId),                       
     FOREIGN KEY (discussionId) REFERENCES discussion(discussionId) ON DELETE CASCADE,
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
-COMMIT;
+
 
 -- Stores comments made by users on discussion posts
 CREATE TABLE discussion_comments (
@@ -98,7 +98,7 @@ CREATE TABLE discussion_comments (
     FOREIGN KEY (authorId) REFERENCES users(userId)
 );
 
-COMMIT;
+
 
 -- Stores active site theme
 CREATE TABLE themes (
@@ -106,4 +106,3 @@ CREATE TABLE themes (
     theme VARCHAR(100) NOT NULL UNIQUE                        
 );
 
-COMMIT;

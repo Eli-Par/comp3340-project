@@ -32,7 +32,7 @@ FROM advice a JOIN users ON a.authorId = users.userId
 WHERE NOT EXISTS (
         SELECT 1 FROM advice_history h
         WHERE h.adviceId = a.adviceId AND h.userId = ?
-    )";
+    ) ORDER BY adviceId DESC";
 $preparedStatement = $conn->prepare($query);
 $preparedStatement->bind_param("iii", $userId, $userId, $userId);
 $preparedStatement->execute();
