@@ -37,9 +37,10 @@
 
 /* Set size of image in popup overlay */
 .image-overlay > img {
-    width: 70vw;
-    height: auto;
+    max-width: 70vw;
     max-height: 70vh;
+    width: auto;
+    height: auto;
     cursor: default;
 }
 
@@ -50,6 +51,6 @@
     }
 
     .image-overlay>img {
-        width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
     }
 }

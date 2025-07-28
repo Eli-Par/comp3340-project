@@ -76,6 +76,13 @@
                 }
             });
 
+            document.addEventListener('keydown', (e) => {
+                if(e.code === 'Escape') {
+                    const overlay = document.querySelector('.image-overlay');
+                    if(overlay) overlay.style.display = 'none';
+                }
+            })
+
             //Fetch list of images in gallery directory
             fetch('../private/gallery_api.php')
             .then(res => res.json())
