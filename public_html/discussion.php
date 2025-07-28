@@ -117,22 +117,19 @@ if ($result->num_rows > 0) {
     <section class="card comment-section-card">
         <h2>Comments</h2>
         <!-- Show comments or text explaining no comments yet -->
-        <?php if ($commentResult->num_rows == 0) { ?>
-            <p style="text-align: center;">No comments have been posted yet!</p>
-        <?php } else { ?>
-            <div id="comment-section">
-                <?php
-                //Iterate over comments and put into cards
-                while ($row = $commentResult->fetch_assoc()) {
-                    echo '
-                    <p class="card comment">
-                        <b>' . htmlentities($row['username']) . ':</b> ' . nl2br(htmlentities($row['content'])) . '
-                    </p>
-                    ';
-                }
-                ?>
-            </div>
-        <?php } ?>
+        <div id="comment-section">
+            <?php if ($commentResult->num_rows == 0) { ?> <p id="no-comment-text" style="text-align: center;">No comments have been posted yet!</p> <?php } ?>
+            <?php
+            //Iterate over comments and put into cards
+            while ($row = $commentResult->fetch_assoc()) {
+                echo '
+                <p class="card comment">
+                    <b>' . htmlentities($row['username']) . ':</b> ' . nl2br(htmlentities($row['content'])) . '
+                </p>
+                ';
+            }
+            ?>
+        </div>
         <!-- if user logged out show login prompt, otherwise show post a comment -->
         <?php if($userId == 0) { ?>
             <a href="login.php" style="color: black; text-align: center;"><h3 style="margin-top: 16px;">Login to Post a Comment</h3></a>
@@ -175,6 +172,11 @@ if ($result->num_rows > 0) {
                 if(data.success) {
                     //get comment section
                     const commentSection = document.getElementById('comment-section');
+
+                    const noCommentText = document.getElementById('no-comment-text');
+                    if(noCommentText && noCommentText.parentNode) {
+                        noCommentText.parentNode.removeChild(noCommentText);
+                    }
                     
                     //Create new comment card
                     const newComment = document.createElement('p');
@@ -184,7 +186,7 @@ if ($result->num_rows > 0) {
 
                     //Insert comment contents
                     const userSection = document.createElement('b');
-                    userSection.textContent = <?php echo json_encode($username); ?> + ': ';
+                    userSection.textContent = <?php echo json_encode($name); ?> + ': ';
 
                     const textSection = document.createTextNode(content);
 
