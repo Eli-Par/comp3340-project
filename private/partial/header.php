@@ -8,11 +8,31 @@ $currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 // Help mapping
 $pageLinks = [
-    'admin.php' => 'https://example.com/admin/dashboard',
-    'index.php' => 'https://example.com/home',
-    'login.php' => 'https://example.com/auth',
-    'profile.php' => 'https://example.com/user/profile',
+    'account.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/User-Profile',
+    'add_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
+    'add_discussion.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'admin.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Admin-Panel',
+    'admin_contact.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Admin-Panel',
+    'admin_users.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Admin-Panel',
+    'advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
+    'all_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
+    'all_discussions.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'discussion.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'edit_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Admin-Panel',
+    'edit_discussion.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'favorite_discussions.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'index.php' => 'https://github.com/Eli-Par/comp3340-project/wiki',
+    'liked_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
+    'login.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/User-Profile',
+    'my_discussions.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'my_profile.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/User-Profile',
+    'popular_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
+    'recent_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
+    'signup.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/User-Profile',
+    'trending_discussions.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Discussion-Board',
+    'unread_advice.php' => 'https://github.com/Eli-Par/comp3340-project/wiki/Advice-Section',
 ];
+
 
 // Store the current pages help link
 if (isset($pageLinks[$currentPage])) {

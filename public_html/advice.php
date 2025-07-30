@@ -106,7 +106,14 @@ if ($result->num_rows > 0) {
         </div>
 
         <!-- author and interactions -->
-        <h3 style="text-align: center;">By <?php echo htmlentities($username) ?></h3>
+        <h3 style="text-align: center;">
+            By <?php echo htmlentities($username) ?>
+            <?php if ($isAdmin) { ?>
+                <a href="edit_advice.php?adviceId=<?php echo $adviceId; ?>">
+                    <span class="material-symbols-outlined" style="color: black;">edit</span>
+                </a>
+            <?php } ?>
+        </h3>
 
         <div style="display: flex; justify-content: center;">
             <?php echo createAdviceInteractionButtons($adviceId, $likes, $dislikes, $isLiked, $isDisliked, true) ?>
