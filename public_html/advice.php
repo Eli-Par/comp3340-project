@@ -112,6 +112,9 @@ if ($result->num_rows > 0) {
                 <a href="edit_advice.php?adviceId=<?php echo $adviceId; ?>">
                     <span class="material-symbols-outlined" style="color: black;">edit</span>
                 </a>
+                <a href="#" onclick="confirmDelete(<?php echo $adviceId ?>)">
+                    <span class="material-symbols-outlined" style="color: black;">delete</span>
+                </a>
             <?php } ?>
         </h3>
 
@@ -160,5 +163,32 @@ if ($result->num_rows > 0) {
 
     select.dispatchEvent(new Event('change'));
 </script>
+
+<script>
+    //Delete advice entry. Check with user and send id to be deleted
+    function confirmDelete(adviceId) {
+        if (!confirm("Are you sure you want to delete this advice?")) {
+            return;
+        }
+
+        fetch('../private/delete_advice_api.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'adviceId=' + encodeURIComponent(adviceId)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = "all_advice.php";
+            }
+            else {
+                console.error(data.error);
+            }
+        });
+    }
+</script>
+
 
 <?php include '../private/partial/footer.php'; ?>

@@ -32,7 +32,7 @@ CREATE TABLE advice_interactions (
     userId INT NOT NULL,                                      
     isLike TINYINT(1) NOT NULL,                               
     PRIMARY KEY (adviceId, userId),                           
-    FOREIGN KEY (adviceId) REFERENCES advice(adviceId),
+    FOREIGN KEY (adviceId) REFERENCES advice(adviceId) ON DELETE CASCADE,
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
@@ -45,7 +45,7 @@ CREATE TABLE advice_history (
     adviceId INT,                                             
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                 
     FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (adviceId) REFERENCES advice(adviceId)
+    FOREIGN KEY (adviceId) REFERENCES advice(adviceId) ON DELETE CASCADE
 );
 
 
