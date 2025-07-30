@@ -7,3 +7,8 @@ button {
     border-radius: 0;
     box-shadow: none;
 }
+
+:root {
+    --nav-background-color: #0b2035;
+    --background-color: #efefef;
+}
