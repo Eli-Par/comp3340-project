@@ -2,6 +2,8 @@ function deleteItem(event, elem) {
     event.stopPropagation();
     event.preventDefault();
 
+    if (!confirm("Are you sure you want to delete this discussion post?")) return;
+
     const discussionId = elem.getAttribute('data-discussion-id');
 
     //Send api request to delete discussion
