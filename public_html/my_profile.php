@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "View your Travel Tipia profile. Travel Tipia is a travel tip site and discussion board for all your travel needs";
+$pageKeywords = "profile, travel tips, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 //If not logged in redirect to home page

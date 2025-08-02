@@ -1,4 +1,6 @@
 <?php
+    $pageDescription = "Login to Travel Tipia to gain access to all features!. Travel Tipia is a travel tip site and discussion board for all your travel needs";
+    $pageKeywords = "signin, travel tips, travel, explore, adventure, community, tip, hub";
     session_start();
 ?>
 

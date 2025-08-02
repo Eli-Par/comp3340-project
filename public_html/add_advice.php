@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Add an advice article to Travel Tipia";
+$pageKeywords = "add advice, add article, add advice article, create advice article, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 //check if logged in and admin

@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Read all your unread advice articles on Travel Tipia. A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "unread advice articles, travel tips, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 require_once '../private/advice_grid.php';

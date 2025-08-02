@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Edit a Travel Tipia discussion post. A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "edit discussion post, discussion board, travel tips, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 require_once '../private/dbConnection.php';

@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "view contact messages, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 //Check if admin

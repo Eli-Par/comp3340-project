@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Add a discussion post to the discussion board on Travel Tipia. A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "add discussion, post discussion, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 $userId = $_SESSION['userId'] ?? 0;

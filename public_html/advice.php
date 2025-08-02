@@ -1,4 +1,5 @@
 <?php
+$pageDescription = "Curated travel advice you can trust";
 $pageKeywords = "read advice, curated post, trust worthy, travel, explore, adventure, community, tip, hub";
 
 session_start();

@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Read the most popular curated, trustworthy travel advice on Travel Tipia. A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "popular advice articles, travel tips, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 require_once '../private/advice_grid.php';

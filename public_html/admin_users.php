@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Travel Tipia user account management";
+$pageKeywords = "manage users, deactivate user, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 //Check if user is admin

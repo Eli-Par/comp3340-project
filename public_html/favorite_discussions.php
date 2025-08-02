@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Read all your favorite travel discussions on Travel Tipia. A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "hearted disucssions, discussion board, travel tips, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 require_once '../private/discussion_list.php';

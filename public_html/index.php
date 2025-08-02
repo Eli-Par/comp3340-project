@@ -1,4 +1,6 @@
 <?php
+//Use default SEO in head.php since main page and it was written with it in mind
+
 session_start();
 
 require_once '../private/advice_grid.php';

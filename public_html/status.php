@@ -28,6 +28,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="View the status of the Travel Tipia site. Travel Tipia is a travel tip site and discussion board for all your travel needs">
+    <meta name="keywords" content="site status, Travel Tipia status, travel, explore, adventure, community, tip, hub">
 
     <style>
         /* basic status page styling (embedded to keep status page simple so it is less likely to go down) */

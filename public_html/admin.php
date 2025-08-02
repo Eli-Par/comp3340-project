@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "The landing page for Travel Tipia system admin tools";
+$pageKeywords = "system admin tools, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 //Check if is admin

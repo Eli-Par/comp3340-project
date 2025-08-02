@@ -1,4 +1,7 @@
 <?php
+$pageDescription = "Read a user posted travel discussion on Travel Tipia. A travel tip site and discussion board for all your travel needs";
+$pageKeywords = "user post, user generated content, travel discussion, discussion board, travel tips, travel, explore, adventure, community, tip, hub";
+
 session_start();
 
 require_once '../private/discussion_card.php';
